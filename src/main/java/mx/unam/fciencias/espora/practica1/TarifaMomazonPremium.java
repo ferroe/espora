@@ -1,0 +1,21 @@
+package mx.unam.fciencias.espora.practica1;
+
+/**
+ * Esta clase implementa la estrategia de tarifa para el plan premium de Momazon.
+ * 
+ * @author Espora
+ * @version 1.0
+ */
+
+public class TarifaMomazonPremium implements TarifaEstrategia {
+
+    /**
+     * Este método retorna la tarifa que se cobra por el plan premium de Momazon.
+     * 
+     * @return $150
+     */
+    @Override
+    public float cobrar() {
+        return 150;
+    }
+}
