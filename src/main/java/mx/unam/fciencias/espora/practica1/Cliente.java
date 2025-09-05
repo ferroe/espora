@@ -1,7 +1,7 @@
 package mx.unam.fciencias.espora.practica1;
 
+import java.io.PrintWriter;
 import java.util.LinkedList;
-import java.util.concurrent.Flow.Subscription;
 
 /**
  * Esta clase representa a un cliente de tipo Observador.
@@ -37,14 +37,17 @@ public class Cliente implements Observador {
      * @param recomendacion Una recomendación de acuerdo al cambio en el servicio.
      */
     @Override
-    public void actualizar(Sujeto servicio, float tarifa, String recomendacion) {
-        Subscripcion suscripcion = getSuscripcion(servicio);
+    public void actualizar(Sujeto servicio, float tarifa, String recomendacion, PrintWriter salida) {
+        Suscripcion suscripcion = getSuscripcion(servicio);
 
         if (this.saldo >= tarifa) {
             this.saldo = this.saldo - tarifa;
             suscripcion.incrementarMes();
+            salida.println(nombre + " paga: $" + tarifa + " por el servicio " + servicio.getNombre());
+            salida.println("\nTe recomendamos: " + recomendacion);
         } else {
-            this.cancelarServicio(servicio);
+            salida.println("\n" + nombre + " no tiene saldo suficiente para pagar el servicio " + servicio.getNombre() + " Lamentamos que su suscripción haya sido cancelada.");
+            this.cancelarServicio(servicio, salida);
         }
     }
 
@@ -53,31 +56,35 @@ public class Cliente implements Observador {
      * @param servicio El servicio al cual el cliente desea suscribirse.
      * @param tarifa La tarifa del servicio al cual el cliente desea suscribirse.
      */
-    public void suscribirServicio(Sujeto servicio, float tarifa) {
+    public void suscribirServicio(Sujeto servicio, TarifaEstrategia tarifa, PrintWriter salida) {
         Suscripcion suscripcion = getSuscripcion(servicio);
         if (suscripcion == null) {
-            suscripcion = new Suscripcion(this, tarifa, servicio);
-            servicios.add(suscripcion);
-            servicio.suscribir(this);
-        } else if (!suscripcion.isActiva()) {
+            suscripcion = new Suscripcion(tarifa, servicio, this);
+            suscripciones.add(suscripcion);
+            servicio.registrar(this);
+            salida.println(nombre + "Bienvenido a " + servicio.getNombre());
+        } else if (!suscripcion.getIsActiva()) {
             suscripcion.setIsActiva(true);
             suscripcion.setTarifa(tarifa);
-            servicio.suscribir(this);
+            servicio.registrar(this);
+            salida.println(nombre + "Bienvenido de nuevo a " + servicio.getNombre());
         }
+    }
 
     /**
      * Este método permite que el cliente cancele su suscripción a un servicio.
      * @param servicio El servicio al cual el cliente desea cancelar su suscripción.
      */
-    public void cancelarServicio(Sujeto servicio) {
+    public void cancelarServicio(Sujeto servicio, PrintWriter salida) {
         Suscripcion suscripcion = getSuscripcion(servicio);
-        if (suscripcion != null && suscripcion.isActiva()) {
+        if (suscripcion != null && suscripcion.getIsActiva()) {
             suscripcion.setIsActiva(false);
             servicio.desuscribir(this);
+            salida.println(nombre + " ha cancelado su suscripción a " + servicio.getNombre());
         }
     }
 
-    private Suscripcion getSuscripcion(Sujeto servicio) {
+    public Suscripcion getSuscripcion(Sujeto servicio) {
         Suscripcion suscripcionCliente = null;
         for (Suscripcion suscripcion : suscripciones) {
             if (suscripcion.getServicio().equals(servicio)) {

@@ -17,7 +17,7 @@ public class TarifaMemeflixUno implements TarifaEstrategia {
      * @return $120
      */
     @Override
-    public float cobrar() {
+    public float cobrar(Suscripcion suscripcion) {
         return 120;
     }
 }
