@@ -16,6 +16,7 @@ public class Suscripcion {
     private TarifaEstrategia tarifa; 
     private boolean isActiva;
     private Sujeto planSuscripcion;
+    private Cliente cliente;
 
     /**
      * Constructor de la clase Suscripcion
@@ -25,15 +26,16 @@ public class Suscripcion {
      * @param isActiva Boolean que verifica si es o no activa la suscripcion inicializada en true 
      * @param planSuscripcion Plan de la plataforma que se esta contratando
      */
-    public Suscripcion (int meses, TarifaEstrategia tarifa, boolean isActiva, Sujeto planSuscripcion) {
+    public Suscripcion (TarifaEstrategia tarifa, Sujeto planSuscripcion, Cliente cliente) {
         this.meses = 0;
         this.tarifa = tarifa;
         this.isActiva = true;
         this.planSuscripcion = planSuscripcion;
+        this.cliente = cliente;
     }
 
     /**
-     * Getter de la clase Suscripcion
+     * Metodo getter que nos da el servicio.
      * @return Tomamos el plan de la suscripcion.
      */
     public Sujeto getServicio(){
@@ -41,7 +43,7 @@ public class Suscripcion {
     }
 
     /**
-     * Nos dice los meses acumulados por suscripcion.
+     * Metodo getter que nos da los meses.
      *  
      * @return Devuelve los meses
      */
@@ -50,23 +52,23 @@ public class Suscripcion {
     }
 
     /**
-     * Nos da la estrategia de cobro requerida
+     * Método getter que nos da la tarifa.
      * 
-     * @return Devuelve la estrategia de la tarifa que se esta usando
+     * @return Devuelve la tarifa que se esta usando
      */
     public TarifaEstrategia getTarifa(){
         return tarifa;
     } 
 
     /** 
-     * Se tiene el valor de la tarifa de la suscripcion
+     * Método setter que establece la tarifa.
     */
     public void setTarifa(TarifaEstrategia tarifa) {
         this.tarifa = tarifa;
     }
 
     /**
-     * Nos dice si la suscripcion esta activa para los cobros y notificaciones.
+     * Método getter que nos da si esta activa o no.
      * 
      * @return Devuelve true o false dependiendo si la suscripcion 
      * es activa o no
@@ -76,7 +78,7 @@ public class Suscripcion {
     }
     
     /**
-     * Aqui guardamos el valor de true o false
+     * Método setter que establece si esta activa o no.
      */    
     public void setIsActiva(boolean isActiva) {
         this.isActiva = isActiva;
