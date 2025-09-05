@@ -34,11 +34,12 @@ public class Suscripcion {
         this.cliente = cliente;
     }
 
+    
     /**
      * Metodo getter que nos da el servicio.
      * @return Tomamos el plan de la suscripcion.
      */
-    public Sujeto getServicio(){
+    public Sujeto getServicio() {
         return planSuscripcion;
     }
 
@@ -47,7 +48,7 @@ public class Suscripcion {
      *  
      * @return Devuelve los meses
      */
-    public int getMeses(){
+    public int getMeses() {
         return meses;
     }
 
@@ -56,7 +57,7 @@ public class Suscripcion {
      * 
      * @return Devuelve la tarifa que se esta usando
      */
-    public TarifaEstrategia getTarifa(){
+    public TarifaEstrategia getTarifa() {
         return tarifa;
     } 
 
@@ -73,7 +74,7 @@ public class Suscripcion {
      * @return Devuelve true o false dependiendo si la suscripcion 
      * es activa o no
      */
-    public boolean getIsActiva(){
+    public boolean getIsActiva() {
         return isActiva;
     }
     

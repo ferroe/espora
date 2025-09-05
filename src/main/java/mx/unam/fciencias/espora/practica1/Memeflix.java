@@ -1,5 +1,6 @@
 package mx.unam.fciencias.espora.practica1;
 
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -61,14 +62,15 @@ public class Memeflix implements Sujeto {
      * Este método notifica a los observadores registrados.
      */
     @Override
-    public void notificar() { 
-        for (Cliente cliente : clientes) {
-            Suscripcion suscripcion = cliente.getSuscripcion();
+    public void notificar(PrintWriter salida) {
+        List<Cliente> copiaClientes = new LinkedList<>(this.clientes);
+        for (Cliente cliente : copiaClientes) {
+            Suscripcion suscripcion = cliente.getSuscripcion(this);
             if (suscripcion.getIsActiva() && suscripcion != null) {
-                Tarifa tarifa = suscripcion.getTarifa();
+                TarifaEstrategia tarifa = suscripcion.getTarifa();
                 float cobro = tarifa.cobrar(suscripcion);
                 String recomendacion = this.getRecomendacion();
-                cliente.actualizar(this, cobro, recomendacion);
+                cliente.actualizar(this, cobro, recomendacion, salida);
             }
         }
     }
@@ -83,7 +85,10 @@ public class Memeflix implements Sujeto {
             recomendacion = "No hay recomendaciones disponibles en este momento.";
         } else {
             recomendacion = recomendaciones.get(mesRecomendacion);
-            mesRecomendacion = mesRecomendacion ++;
+            mesRecomendacion++;
+            if (mesRecomendacion >= recomendaciones.size()) {
+                mesRecomendacion = 0;
+            }
         }
         return recomendacion;
     }

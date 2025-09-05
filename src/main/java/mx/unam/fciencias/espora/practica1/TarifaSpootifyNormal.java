@@ -15,7 +15,7 @@ public class TarifaSpootifyNormal implements TarifaEstrategia {
      * @return $0
      */
     @Override
-    public float cobrar() {
+    public float cobrar(Suscripcion suscripcion) {
         return 0;
     }
 }

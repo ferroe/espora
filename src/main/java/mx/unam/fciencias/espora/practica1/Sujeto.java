@@ -1,5 +1,7 @@
 package mx.unam.fciencias.espora.practica1;
 
+import java.io.PrintWriter;
+
 /**
  * Esta interfaz maneja los métodos que un sujeto debe implementar.
  * Permite registrar, desuscribir y notificar a los observadores.
@@ -26,5 +28,11 @@ public interface Sujeto {
     /**
      * Este método notifica a todos los observadores que están registrados.
      */
-    public void notificar();
+    public void notificar(PrintWriter salida);
+
+    /**
+     * Este método regresa el nombre del servicio.
+     * @return El nombre del servicio.
+     */
+    public String getNombre();
 }

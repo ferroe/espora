@@ -15,7 +15,7 @@ public class TarifaSpootifyPremium implements TarifaEstrategia {
      * @return $80
      */
     @Override
-    public float cobrar() {
+    public float cobrar(Suscripcion suscripcion) {
         return 80;
     }
 }

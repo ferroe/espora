@@ -14,5 +14,5 @@ public interface TarifaEstrategia {
      * 
      * @return la tarifa.
      */
-    public float cobrar();
+    public float cobrar(Suscripcion suscripcion);
 }

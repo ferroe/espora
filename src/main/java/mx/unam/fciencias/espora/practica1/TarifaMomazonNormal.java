@@ -15,7 +15,7 @@ public class TarifaMomazonNormal implements TarifaEstrategia {
      * @return $110
      */
     @Override
-    public float cobrar() {
+    public float cobrar(Suscripcion suscripcion) {
         return 110;
     }
 }

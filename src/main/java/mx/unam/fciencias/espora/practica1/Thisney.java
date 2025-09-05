@@ -2,6 +2,7 @@ package mx.unam.fciencias.espora.practica1;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.io.PrintWriter;
 
 /**
  * Esta clase representa al sujeto Thisney
@@ -39,6 +40,7 @@ public class Thisney implements Sujeto {
 
     /**
      * Este método hace el registro de un observador.
+     * 
      * @param o El observador el cual se desea registrar.
      */
     @Override
@@ -46,9 +48,10 @@ public class Thisney implements Sujeto {
         clientes.add((Cliente) o);
         System.out.println("El cliente " + o + " ha sido registrado.");
     }
-    
+
     /**
      * Este método hace la desuscripción de un observador.
+     * 
      * @param o El observador el cual se desea desuscribir.
      */
     @Override
@@ -61,20 +64,22 @@ public class Thisney implements Sujeto {
      * Este método notifica a los observadores registrados.
      */
     @Override
-    public void notificar() { 
-        for (Cliente cliente : clientes) {
-            Suscripcion suscripcion = cliente.getSuscripcion();
+    public void notificar(PrintWriter salida) {
+        List<Cliente> copiaClientes = new LinkedList<>(this.clientes);
+        for (Cliente cliente : copiaClientes) {
+            Suscripcion suscripcion = cliente.getSuscripcion(this);
             if (suscripcion.getIsActiva() && suscripcion != null) {
-                Tarifa tarifa = suscripcion.getTarifa();
+                TarifaEstrategia tarifa = suscripcion.getTarifa();
                 float cobro = tarifa.cobrar(suscripcion);
                 String recomendacion = this.getRecomendacion();
-                cliente.actualizar(this, cobro, recomendacion);
+                cliente.actualizar(this, cobro, recomendacion, salida);
             }
         }
     }
 
     /**
      * Este método obtiene la recomendación del mes.
+     * 
      * @return La recomendación del mes.
      */
     public String getRecomendacion() {
@@ -83,13 +88,17 @@ public class Thisney implements Sujeto {
             recomendacion = "No hay recomendaciones disponibles en este momento.";
         } else {
             recomendacion = recomendaciones.get(mesRecomendacion);
-            mesRecomendacion = mesRecomendacion ++;
+            mesRecomendacion++;
+            if (mesRecomendacion >= recomendaciones.size()) {
+                mesRecomendacion = 0;
+            }
         }
         return recomendacion;
     }
 
     /**
      * Este método obtiene el nombre del sujeto.
+     * 
      * @return El nombre del sujeto.
      */
     public String getNombre() {
