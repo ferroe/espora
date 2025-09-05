@@ -12,10 +12,10 @@ public class TarifaSpootifyPremium implements TarifaEstrategia {
     /**
      * Este método retorna la tarifa que se cobra por el plan premium de Spootify.
      * 
-     * @return $150
+     * @return $80
      */
     @Override
     public float cobrar() {
-        return 150;
+        return 80;
     }
 }
