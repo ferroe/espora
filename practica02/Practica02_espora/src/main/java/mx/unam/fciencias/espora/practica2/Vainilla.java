@@ -3,7 +3,11 @@ package mx.unam.fciencias.espora.practica2;
 /**
  * Esta es una clase que representa al sabor Vainilla de un helado.
  * La cual extiende de la clase abstracta Helado.
+ * 
+ * @author Equipo Espora
+ * @version 1.0
  */
+
 public class HeladoVainilla extends Helado {
 
     /**
