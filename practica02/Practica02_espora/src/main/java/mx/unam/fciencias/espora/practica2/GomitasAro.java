@@ -15,24 +15,24 @@ public class GomitasAro extends IngredienteDecorador {
     private Helado helado;
 
     /**
-     * Constructor de la clase GomitasAro
-     * @param helado Es el nombre del atributo helado.
+     * Constructor de la clase GomitasAro.
+     * @param helado La base del helado que tendrá ingredientes extra.
      */
     public GomitasAro(Helado helado) {
         this.helado = helado;
     }
 
     /**
-     * Este metodo get que obtiene la descripcion del helado 
-     * @return Devuelve la descripcion del helado con gomitas de aro
+     * EEste metodo obtiene la descripcion del helado.
+     * @return Devuelve la descripcion del helado con gomitas de aro.
      */
     public String getDescripcion() {
         return helado.getDescripcion() + ", Gomitas de aro";
     }
 
     /**
-     * Este metodo del costo del helado con gomitas de aro
-     * @return Devuelve el costo del helado con gomitas de aro
+     * Este metodo del costo del helado con gomitas de aro.
+     * @return Devuelve el costo del helado con gomitas de aro.
      */
     public double costo() {
         return 10.00 + helado.costo();

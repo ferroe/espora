@@ -15,24 +15,24 @@ public class GomitasGusano extends IngredienteDecorador {
     private Helado helado;
 
     /**
-     * Constructor de la clase GomitasGusano
-     * @param helado Es el nombre del atributo helado.
+     * Constructor de la clase GomitasGusano.
+     * @param helado La base del helado que tendrá ingredientes extra.
      */
     public GomitasGusano(Helado helado) {
         this.helado = helado;
     }
 
     /**
-     * Este metodo get que obtiene la descripcion del helado 
-     * @return Devuelve la descripcion del helado con gomitas de gusano
+     * Este metodo obtiene la descripcion del helado.
+     * @return Devuelve la descripcion del helado con gomitas de gusano.
      */
     public String getDescripcion() {
         return helado.getDescripcion() + ", Gomitas de Gusano";
     }
 
     /**
-     * Este metodo del costo del helado con gomitas de gusano
-     * @return Devuelve el costo del helado con gomitas de gusano
+     * Este metodo del costo del helado con gomitas de gusano.
+     * @return Devuelve el costo del helado con gomitas de gusano.
      */
     public double costo() {
         return 10.00 + helado.costo();

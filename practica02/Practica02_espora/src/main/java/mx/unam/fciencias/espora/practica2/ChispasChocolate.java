@@ -16,14 +16,14 @@ public class ChispasChocolate extends IngredienteDecorador {
 
     /**
      * Constructor de la clase ChispasChocolate
-     * @param helado Es el nombre del atributo helado.
+     * @param helado La base del helado que tendrá ingredientes extra
      */
     public ChispasChocolate(Helado helado) {
         this.helado = helado;
     }
 
     /**
-     * Este metodo get que obtiene la descripcion del helado 
+     * Este metodo obtiene la descripcion del helado 
      * @return Devuelve la descripcion del helado con chispas de chocolate.
      */
     public String getDescripcion() {

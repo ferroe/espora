@@ -15,15 +15,15 @@ public class Manguitos extends IngredienteDecorador {
     private Helado helado;
 
     /**
-     * Constructor de la clase Manguitos
-     * @param helado Es el nombre del atributo helado.
+     * Constructor de la clase Manguitos.
+     * @param helado La base del helado que tendrá ingredientes extra.
      */
     public Manguitos(Helado helado) {
         this.helado = helado;
     }
 
     /**
-     * Este metodo get que obtiene la descripcion del helado 
+     * Este metodo obtiene la descripcion del helado.
      * @return Devuelve la descripcion del helado con manguitos.
      */
     public String getDescripcion() {
@@ -31,8 +31,8 @@ public class Manguitos extends IngredienteDecorador {
     }
 
     /**
-     * Este metodo del costo del helado con manguitos
-     * @return Devuelve el costo del helado con manguitos
+     * Este metodo del costo del helado con manguitos.
+     * @return Devuelve el costo del helado con manguitos.
      */
     public double costo() {
         return 10.00 + helado.costo();
