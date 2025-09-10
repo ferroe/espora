@@ -26,4 +26,3 @@ public class HeladoFresa extends Helado {
         return 50.0;
     }
 }
-    
