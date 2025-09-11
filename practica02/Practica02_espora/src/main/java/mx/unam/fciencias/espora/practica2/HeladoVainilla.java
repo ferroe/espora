@@ -22,7 +22,7 @@ public class HeladoVainilla extends Helado {
      * @return el costo del helado sabor Vainilla.
      */
     @Override
-    public double getCosto() {
+    public double costo() {
         return 50.0;
     }
 }
