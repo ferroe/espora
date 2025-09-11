@@ -14,12 +14,12 @@ public abstract class Helado {
      * Este método regresa la descripción del helado.
      * @return descripcion
      */
-    public String getDescription() {
+    public String getDescripcion() {
         return descripcion;
     }
 
     /**
      * Este método regresa el costo del helado.
      */
-    public abstract double cost();
+    public abstract double costo();
 }
