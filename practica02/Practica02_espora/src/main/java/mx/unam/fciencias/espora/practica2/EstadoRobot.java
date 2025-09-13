@@ -11,22 +11,34 @@ package mx.unam.fciencias.espora.practica2;
 public interface EstadoRobot {
 
     /**
-     * Metodo para dormir del robot
+     * Metodo para llamar al robot
      */
-    public void dormir();
+    public void llamar();
 
     /**
-     * Metodo para atender del robot
+     * Metodo para ordenar el pedido al robot
      */
-    public void atender();
+    public void ordenarPedido(Producto producto);
 
     /**
-     * Metodo para cocinar del robot
+     * Metodo para confirmar la orden al robot
      */
-    public void cocinar();
+    public void confirmarOrden();
 
     /**
-     * Metodo para repartir del robot
+     * Metodo para cancelar la orden al robot
      */
-    public void repartir();
+    public void cancelarOrden();
+
+    /**
+     * Metodo para que el robot inicie la preparacion del pedido
+     */
+    public void iniciarPreparacion();
+
+    /**
+     * Metodo para que se le solicite la entrega al robot
+     */
+    public void solicitarEntrega();
+
+
 }

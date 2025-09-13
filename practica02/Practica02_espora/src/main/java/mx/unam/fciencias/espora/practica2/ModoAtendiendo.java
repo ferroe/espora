@@ -8,9 +8,9 @@ package mx.unam.fciencias.espora.practica2;
  * @version 1.0
  */
 
-public class ModoAtendiendo implements EstadoRobot{
+public class ModoAtendiendo implements EstadoRobot {
 
-    private Robot robot;
+    Robot robot;
 
     /**
      * Constructor de la clase ModoAtendiendo
@@ -20,37 +20,43 @@ public class ModoAtendiendo implements EstadoRobot{
         this.robot = robot;
     }
 
-    /**
-     * Metodo para cambiar el estado del robot a dormir
-     */
     @Override
-    public void dormir() {
-        System.out.println("Atendiendo: Termina de atender y se va a dormir");
-        robot.setModo(robot.getModoDormido());
+    public void llamar() {
+        System.out.println("--- Modo Atendiendo ---\n" +
+                        "Ya estoy atendiendo a un cliente, espera un momento\n");
     }
 
-    /**
-     * Metodo para cambiar el estado del robot a atender
-     */
     @Override
-    public void atender() {
-        System.out.println("Atendiendo: El robot esta atendiendo");
-        robot.setModo(robot.getModoAtendiendo());
+    public void ordenarPedido(Producto producto) {
+        System.out.println("--- Modo Atendiendo ---\n" +
+                        "Añadiendo " + producto.getNombre() + " a tu orden\n");
+        robot.getOrdenActual().agregarProducto(producto);
     }
 
-    /**
-     * Metodo para cambiar el estado del robot a cocinar
-     */
     @Override
-    public void cocinar() {
-        System.out.println("Atendiendo: El robot pasa a cocinando");
+    public void confirmarOrden() {
+        System.out.println("--- Modo Atendiendo ---\n" +
+                        "Orden confirmada, esperando para preparar...\n");
+        robot.setEstadoActual(robot.getModoEsperando());
     }
 
-    /**
-     * Metodo para cambiar el estado del robot a repartir
-     */
     @Override
-    public void repartir() {
-        System.out.println("Atendiendo: El robot no puede repartir directamente, primero debe cocinar");
-    }   
+    public void cancelarOrden() {
+        System.out.println("--- Modo Atendiendo ---\n" +
+                        "Orden cancelada, volviendo a dormir...zZz\n");
+        robot.setEstadoActual(robot.getModoDormido());
+
+    }
+
+    @Override
+    public void iniciarPreparacion() {
+        System.out.println("--- Modo Atendiendo ---\n" +
+                        "No puedo iniciar la preparación aún, confirma la orden");
+    }
+
+    @Override
+    public void solicitarEntrega() {
+        System.out.println("--- Modo Atendiendo ---\n" +
+                        "No puedo entregar el pedido aún, confirma la orden");
+    }
 }
