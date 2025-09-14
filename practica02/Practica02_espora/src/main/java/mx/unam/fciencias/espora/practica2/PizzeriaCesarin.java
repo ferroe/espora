@@ -83,10 +83,16 @@ public class PizzeriaCesarin {
         scanner.close();
     }
 
+
+    /**
+     * Metodo auxiliar para el menu de pizzas.
+     * @param scanner El objeto Scanner para leer la entrada del usuario.
+     * @return La pizza elegida por el usuario.
+     */
     private static Pizza elegirPizza(Scanner scanner) {
         Pizza[] menuPizzas = {
-            new PizzaHawaiana(), new PizzaMargarita(), new PizzaPeperoni(),
-            new PizzaPollo(), new PizzaSalchicha()
+        new PizzaHawaiana(), new PizzaMargarita(), new PizzaPeperoni(),
+        new PizzaPollo(), new PizzaSalchicha()
         };
 
         while (true) {
@@ -95,11 +101,26 @@ public class PizzeriaCesarin {
                 System.out.println((i + 1) + ". " + menuPizzas[i].getInfoTicket());
             }
             System.out.print("Elige una pizza: ");
-            
             try {
                 int opcionPizza = Integer.parseInt(scanner.nextLine());
                 if (opcionPizza > 0 && opcionPizza <= menuPizzas.length) {
-                    return menuPizzas[opcionPizza - 1];
+                    Pizza pizzaSeleccionada = menuPizzas[opcionPizza - 1];
+                    System.out.println("Elige el tipo de masa para tu " + pizzaSeleccionada.getInfoTicket() + ":");
+                    System.out.println("1. Napolitana (por defecto)");
+                    System.out.println("2. Romana");
+                    System.out.println("3. Americana");
+                    System.out.print("Opción de masa: ");
+                    
+                    String tipoMasa = "Napolitana";
+                    try {
+                        int opcionMasa = Integer.parseInt(scanner.nextLine());
+                        if (opcionMasa == 2) tipoMasa = "Romana";
+                        if (opcionMasa == 3) tipoMasa = "Americana";
+                    } catch (NumberFormatException e) {
+                        System.out.println("Se usará Napolitana por defecto");
+                    }
+                    pizzaSeleccionada.setTipoMasa(tipoMasa);
+                    return pizzaSeleccionada;
                 } else {
                     System.out.println("Opción no válida");
                 }
@@ -109,6 +130,11 @@ public class PizzeriaCesarin {
         }
     }
 
+    /**
+     * Metodo auxiliar para el menu de toppings de helado.
+     * @param scanner El objeto Scanner para leer la entrada del usuario.
+     * @return El helado con los toppings elegidos.
+     */
     private static Helado elegirHelado(Scanner scanner) {
         Helado helado = elegirSaborBase(scanner);
         
@@ -164,6 +190,11 @@ public class PizzeriaCesarin {
         return helado;
     }
 
+    /**
+     * Metodo auxiliar para el menu de sabores base de helado.
+     * @param scanner El objeto Scanner para leer la entrada del usuario.
+     * @return El helado con el sabor base elegido.
+     */
     private static Helado elegirSaborBase(Scanner scanner) {
         Helado[] menuSabores = { new HeladoFresa(), new HeladoVainilla(), new HeladoChocolate() };
 

@@ -36,5 +36,14 @@ public class ChispasChocolate extends IngredienteDecorador {
      */
     public double costo() {
         return 10.00 + helado.costo();
-    }  
+    }
+
+    /**
+     * Este metodo prepara el helado con chispas de chocolate
+     */
+    @Override
+    public void preparar() {
+        helado.preparar();        
+        System.out.println("-> Añadiendo ingrediente: Chispas de chocolate");
+    }
 }
