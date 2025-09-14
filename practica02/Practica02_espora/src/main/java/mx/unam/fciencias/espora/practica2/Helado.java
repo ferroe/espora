@@ -39,7 +39,6 @@ public abstract class Helado implements Producto {
      */
     @Override
     public void preparar() {
-        // Esta es la implementación por defecto para los sabores base.
         System.out.println("Sirviendo base: " + getDescripcion());
     }
 }

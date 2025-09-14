@@ -5,6 +5,7 @@ public abstract class Pizza implements Producto {
     /**
      * Atributos de la clase Pizza que representan las caracteristicas de una pizza.
      */
+    protected String tipoMasa = "Napolitana";
     protected int idProducto;
     protected String nombrePizza;
     protected String descripcion;
@@ -49,7 +50,7 @@ public abstract class Pizza implements Producto {
      * Método que indica que se está preparando la masa de la pizza.
      */
     public void prepararMasa() {
-        System.out.println("Preparando la masa de la pizza...");
+        System.out.println("Preparando la masa estilo: " + this.tipoMasa + "...");
     }
 
     /**
@@ -119,7 +120,6 @@ public abstract class Pizza implements Producto {
      *
      * @return false, indicando que la pizza no es vegetariana.
      */
-    @Override
     public boolean quierePizzaVegetariana() {
         return false;
     }
@@ -142,5 +142,14 @@ public abstract class Pizza implements Producto {
     @Override
     public double costo() {
         return this.costo;
+    }
+
+    /**
+     * Método para que el cliente pueda elegir el tipo de masa de su pizza.
+     *
+     * @return El tipo de masa elegido.
+     */
+    public void setTipoMasa(String tipoMasa) {
+        this.tipoMasa = tipoMasa;
     }
 }
