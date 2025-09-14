@@ -37,6 +37,9 @@ public class Malvaviscos extends IngredienteDecorador {
         return 10.00 + helado.costo();
     }
 
+    /**
+     * Este método define cómo se prepara el producto.
+     */
     @Override
     public void preparar() {
         helado.preparar();

@@ -7,7 +7,10 @@ package mx.unam.fciencias.espora.practica2;
  */
 
 public abstract class Helado implements Producto {
-    
+
+    /**
+     * Atributo que representa la descripción del helado.
+     */
     protected String descripcion = "Helado desconocido";
 
     /**
@@ -23,11 +26,17 @@ public abstract class Helado implements Producto {
      */
     public abstract double costo();
 
+    /**
+     * Este método regresa la información del helado para el ticket.
+     */
     @Override
     public String getInfoTicket() {
         return getDescripcion();
     }
 
+    /**
+     * Método que sirve como base para los sabores de helado.
+     */
     @Override
     public void preparar() {
         // Esta es la implementación por defecto para los sabores base.

@@ -11,7 +11,10 @@ package mx.unam.fciencias.espora.practica2;
  */
 
 public class Robot {
-    
+
+    /**
+     * Atributos que representan los modos del robot.
+     */
     private EstadoRobot estadoActual;
     private EstadoRobot modoDormido;
     private EstadoRobot modoAtendiendo;
