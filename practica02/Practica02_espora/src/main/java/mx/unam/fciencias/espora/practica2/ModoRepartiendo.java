@@ -2,7 +2,7 @@ package mx.unam.fciencias.espora.practica2;
 
 /**
  * Clase para ModoRepartiendo
- * 
+ * En esta clase tenemos representado al robot cuando esta en modo repartiendo.
  * @author Equipo Espora
  * @version 1.0
  */
@@ -11,16 +11,28 @@ public class ModoRepartiendo implements EstadoRobot {
 
     Robot robot;
 
+    /**
+     * Constructor de la clase ModoRepartiendo.
+     * @param robot Es el robot de nuestra pizzeria.
+     */
     public ModoRepartiendo(Robot robot) {
         this.robot = robot;
     }
 
+    /**
+     * Este metodo inidica que el robot no puede antender pues esta 
+     * repartiendo el pedido.
+     */
     @Override
     public void llamar() {
         System.out.println("--- Modo Repartiendo ---\n" +
                         "No puedo atender ahorita\n");
     }
 
+    /**
+     * Este método indica que el robot no puede tomar más ordenes.
+     * @param producto Producto es la orden (pizza y helado) que se quiere ordenar.
+     */
     @Override
     public void ordenarPedido(Producto producto) {
         System.out.println("--- Modo Repartiendo ---\n" +
@@ -33,18 +45,29 @@ public class ModoRepartiendo implements EstadoRobot {
                         "No puedo confirmar la orden, ya estoy repartiendo\n");
     }
 
+    /**
+     * Este método indica que el robot no puede cancelar la orden pues ya 
+     * esta en reparto.
+     */
     @Override
     public void cancelarOrden() {
         System.out.println("--- Modo Repartiendo ---\n" +
                         "No puedo cancelar la orden, ya estoy repartiendo\n");
     }
 
+    /**
+     * Este método indica que el robot no puede iniciar la preparación pues ya 
+     * esta repartiendo. 
+     */
     @Override
     public void iniciarPreparacion() {
         System.out.println("--- Modo Repartiendo ---\n" +
                         "No puedo iniciar la preparación, ya estoy repartiendo\n");
     }
 
+    /**
+     * Este método indica que el robot ya tiene listo el pedido junto con el ticket.
+     */
     @Override
     public void solicitarEntrega() {
         System.out.println("--- Modo Repartiendo ---\n" +
