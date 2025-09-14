@@ -11,10 +11,7 @@ package mx.unam.fciencias.espora.practica2;
  */
 
 public class ChispasChocolate extends IngredienteDecorador {
-
-    /**
-     * Atributo que representa la base del helado.
-     */
+    
     private Helado helado;
 
     /**
@@ -39,10 +36,10 @@ public class ChispasChocolate extends IngredienteDecorador {
      */
     public double costo() {
         return 10.00 + helado.costo();
-    }  
+    }
 
     /**
-     * Este método define cómo se prepara el producto.
+     * Este metodo prepara el helado con chispas de chocolate
      */
     @Override
     public void preparar() {
