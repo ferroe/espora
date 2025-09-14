@@ -11,7 +11,10 @@ package mx.unam.fciencias.espora.practica2;
  */
 
 public class GomitasGusano extends IngredienteDecorador {
-    
+
+    /**
+     * Atributo que representa la base del helado.
+     */
     private Helado helado;
 
     /**
@@ -38,6 +41,9 @@ public class GomitasGusano extends IngredienteDecorador {
         return 10.00 + helado.costo();
     }
 
+    /**
+     * Este método define cómo se prepara el producto.
+     */
     @Override
     public void preparar() {
         helado.preparar();        

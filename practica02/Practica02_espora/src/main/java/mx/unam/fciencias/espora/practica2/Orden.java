@@ -3,14 +3,33 @@ package mx.unam.fciencias.espora.practica2;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase que representa una orden de productos.
+ * 
+ * @author Equipo Espora
+ * @version 1.0
+ */
+
 public class Orden {
 
+    /**
+     * Atributo que representa la lista de productos de la orden.
+     */
     private List<Producto> productos;
 
+    /**
+     * Constructor de la clase Orden.
+     * Inicializa la lista de productos.
+     */
     public Orden() {
         this.productos = new ArrayList<>();
     }
 
+    /**
+     * Este metodo agrega un producto a la orden.
+     * Solo permite una pizza y un helado por orden.
+     * @param producto Producto a agregar
+     */
     public void agregarProducto(Producto producto) {
         if (producto instanceof Pizza) {
             for (Producto p : productos) {
