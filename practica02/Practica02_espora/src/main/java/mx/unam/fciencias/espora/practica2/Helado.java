@@ -6,7 +6,7 @@ package mx.unam.fciencias.espora.practica2;
  * @version 1.0
  */
 
-public abstract class Helado {
+public abstract class Helado implements Producto {
     
     protected String descripcion = "Helado desconocido";
 
@@ -22,4 +22,15 @@ public abstract class Helado {
      * Este método regresa el costo del helado.
      */
     public abstract double costo();
+
+    @Override
+    public String getInfoTicket() {
+        return getDescripcion();
+    }
+
+    @Override
+    public void preparar() {
+        // Esta es la implementación por defecto para los sabores base.
+        System.out.println("Sirviendo base: " + getDescripcion());
+    }
 }

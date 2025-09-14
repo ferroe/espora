@@ -37,4 +37,10 @@ public class Manguitos extends IngredienteDecorador {
     public double costo() {
         return 10.00 + helado.costo();
     }  
+
+    @Override
+    public void preparar() {
+        helado.preparar();
+        System.out.println("-> Añadiendo ingrediente: Manguitos");
+    }
 }

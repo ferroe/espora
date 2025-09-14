@@ -7,7 +7,7 @@ public class PizzaMargarita extends Pizza {
     }
 
     @Override
-    public boolean QuierePizzaVegetariana() {
+    public boolean quierePizzaVegetariana() {
         return true;
     }
 

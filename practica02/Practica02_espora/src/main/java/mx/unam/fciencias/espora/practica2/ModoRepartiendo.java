@@ -50,9 +50,10 @@ public class ModoRepartiendo implements EstadoRobot {
      * esta en reparto.
      */
     @Override
-    public void cancelarOrden() {
+    public boolean cancelarOrden() {
         System.out.println("--- Modo Repartiendo ---\n" +
                         "No puedo cancelar la orden, ya estoy repartiendo\n");
+        return false;
     }
 
     /**
@@ -69,12 +70,13 @@ public class ModoRepartiendo implements EstadoRobot {
      * Este método indica que el robot ya tiene listo el pedido junto con el ticket.
      */
     @Override
-    public void solicitarEntrega() {
+    public boolean solicitarEntrega() {
         System.out.println("--- Modo Repartiendo ---\n" +
                         "Entregando tu pedido...\n");
         Orden orden = robot.getOrdenActual();
         System.out.println("Su orden ya esta listo, tenga su pedido y su ticket");
         orden.generarTicket();
         robot.setEstadoActual(robot.getModoDormido());
+        return true;
     }
 }

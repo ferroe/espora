@@ -55,9 +55,10 @@ public class ModoCocinando implements EstadoRobot {
      * Este método indica que el robot no puede cancelar el pedido ya que este ya está en preparación.
      */
     @Override
-    public void cancelarOrden() {
+    public boolean cancelarOrden() {
         System.out.println("--- Modo Cocinando ---\n" +
                         "No puedo cancelar tu pedido, ya está en preparación\n");
+        return false;
     }
 
     /**
@@ -73,8 +74,9 @@ public class ModoCocinando implements EstadoRobot {
      * Este método indica que el robot no puede entregar el pedido ya que en este momento está cocinando.
      */
     @Override
-    public void solicitarEntrega() {
+    public boolean solicitarEntrega() {
         System.out.println("--- Modo Cocinando ---\n" +
                         "No puedo entregar, ya estoy cocinando\n");
+        return false;
     }
 }

@@ -25,4 +25,9 @@ public class HeladoChocolate extends Helado {
     public double costo() {
         return 50.0;
     }
+
+    @Override
+    public String getInfoTicket() {
+        return getDescripcion() + " $" + costo();
+    }
 }

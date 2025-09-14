@@ -1,26 +1,27 @@
 package mx.unam.fciencias.espora.practica2;
 
-public abstract class Pizza {
+public abstract class Pizza implements Producto {
 
     protected int idProducto;
     protected String nombrePizza;
     protected String descripcion;
-    protected double precio;
+    protected double costo;
 
-    public Pizza(int idProducto, String nombrePizza, String descripcion, double precio) {
+    public Pizza(int idProducto, String nombrePizza, String descripcion, double costo) {
         this.idProducto = idProducto;
         this.nombrePizza = nombrePizza;
         this.descripcion = descripcion;
-        this.precio = precio;
+        this.costo = costo;
     }
 
-    public void prepararPizza() {
+    @Override
+    public void preparar() {
         prepararMasa();
         aplanarMasa();
         colocarSalsaDeTomate();
         colocarQueso();
         colocarEspecias();
-        if (!QuierePizzaVegetariana()) {
+        if (!quierePizzaVegetariana()) {
             colocarProteina();
         }
         hornear();
@@ -65,7 +66,17 @@ public abstract class Pizza {
         System.out.println("Empaquetando la pizza...");
     }
 
-    public boolean QuierePizzaVegetariana() {
+    public boolean quierePizzaVegetariana() {
         return false;
+    }
+
+    @Override
+    public String getInfoTicket() {
+        return this.nombrePizza;
+    }
+
+    @Override
+    public double costo() {
+        return this.costo;
     }
 }
