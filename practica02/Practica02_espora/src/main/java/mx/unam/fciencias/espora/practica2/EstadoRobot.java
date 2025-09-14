@@ -39,6 +39,4 @@ public interface EstadoRobot {
      * Metodo para que se le solicite la entrega al robot
      */
     public void solicitarEntrega();
-
-
 }
