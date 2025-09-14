@@ -25,7 +25,7 @@ public class PizzeriaCesarin {
         robot.llamar();
 
         // Llega otro cliente y tambien llama al robot
-        System.out.println("... Otro cliente llega y llama al robotcin ...");
+        System.out.println("... Otro cliente llega y llama al robotcin ...\n");
         robot.llamar();
 
         while (!salir) {
@@ -114,7 +114,13 @@ public class PizzeriaCesarin {
         
         int toppingsAgregados = 0;
 
+        String[] toppingsDisponibles = {
+            "kiwis", "manguitos", "malvaviscos", "fresitas", 
+            "gomitas panda", "gomitas gusano", "gomitas aro", "chispas chocolate"
+        };
+        String menuToppings = String.join(", ", toppingsDisponibles);
         while (true) {
+            System.out.println("Toppings disponibles: " + menuToppings);
             System.out.print("Añade un topping (" + (3 - toppingsAgregados) + " restantes) o introduce 'listo': ");
             String topping = scanner.nextLine().toLowerCase();
 

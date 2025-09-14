@@ -75,7 +75,7 @@ public class ModoRepartiendo implements EstadoRobot {
                         "Entregando tu pedido...\n");
         Orden orden = robot.getOrdenActual();
         System.out.println("Su orden ya esta listo, tenga su pedido y su ticket");
-        orden.generarTicket();
+        System.out.println(orden.generarTicket());
         robot.setEstadoActual(robot.getModoDormido());
         return true;
     }
