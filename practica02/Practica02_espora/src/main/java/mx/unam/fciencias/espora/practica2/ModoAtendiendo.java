@@ -39,7 +39,7 @@ public class ModoAtendiendo implements EstadoRobot {
     @Override
     public void ordenarPedido(Producto producto) {
         System.out.println("--- Modo Atendiendo ---\n" +
-                        "Añadiendo " + producto.getNombre() + " a tu orden\n");
+                        "Añadiendo " + producto.getInfoTicket() + " a tu orden\n");
         robot.getOrdenActual().agregarProducto(producto);
     }
 
@@ -57,11 +57,11 @@ public class ModoAtendiendo implements EstadoRobot {
      * Este método indica que la orden actual ha sido cancelada, y el robot vuelve a su estado Dormido.
      */
     @Override
-    public void cancelarOrden() {
+    public boolean cancelarOrden() {
         System.out.println("--- Modo Atendiendo ---\n" +
                         "Orden cancelada, volviendo a dormir...zZz\n");
         robot.setEstadoActual(robot.getModoDormido());
-
+        return true;
     }
 
     /**
@@ -77,8 +77,9 @@ public class ModoAtendiendo implements EstadoRobot {
      * Este método indica que el robot no puede entregar el pedido ya que la orden aún no está confirmada.
      */
     @Override
-    public void solicitarEntrega() {
+    public boolean solicitarEntrega() {
         System.out.println("--- Modo Atendiendo ---\n" +
                         "No puedo entregar el pedido aún, confirma la orden");
+        return false;
     }
 }

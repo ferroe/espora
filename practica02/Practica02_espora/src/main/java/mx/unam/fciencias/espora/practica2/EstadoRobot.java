@@ -28,7 +28,7 @@ public interface EstadoRobot {
     /**
      * Metodo para cancelar la orden al robot
      */
-    public void cancelarOrden();
+    public boolean cancelarOrden();
 
     /**
      * Metodo para que el robot inicie la preparacion del pedido
@@ -38,5 +38,5 @@ public interface EstadoRobot {
     /**
      * Metodo para que se le solicite la entrega al robot
      */
-    public void solicitarEntrega();
+    public boolean solicitarEntrega();
 }

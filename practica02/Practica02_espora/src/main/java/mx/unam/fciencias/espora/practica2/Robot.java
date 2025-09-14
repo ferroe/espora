@@ -80,9 +80,9 @@ public class Robot {
         this.estadoActual = estadoActual;
         if (this.estadoActual == this.modoAtendiendo) {
             this.ordenActual = new Orden();
-            System.out.println("--- ROBOT ---\nCreando nueva orden...");
+            System.out.println("--- ROBOT ---\n" + 
+                                "Estoy listo para tomar tu orden...\n");
         }
-        // Si el nuevo estado es "Dormido", la orden anterior ya se completó.
         if (this.estadoActual == this.modoDormido) {
             this.ordenActual = null;
         }
@@ -97,8 +97,8 @@ public class Robot {
     
     /**
      * Este metodo es para ordenar el pedido.
-     * @param producto Producto es la orden (pizza y helado o 
-     * pizza o helado) que se quiere ordenar.
+     * @param producto El producto que ordeno el cliente
+     * (pizza o helado)
      */
     public void ordenarPedido(Producto producto) {
         estadoActual.ordenarPedido(producto);
@@ -114,8 +114,8 @@ public class Robot {
     /**
      * Este método cancela la orden del pedido.
      */
-    public void cancelarOrden() {
-        estadoActual.cancelarOrden();
+    public boolean cancelarOrden() {
+        return estadoActual.cancelarOrden();
     }
 
     /**
@@ -128,8 +128,8 @@ public class Robot {
     /**
      * Este método solicita la entrega del pedido.
      */
-    public void solicitarEntrega() {
-        estadoActual.solicitarEntrega();
+    public boolean solicitarEntrega() {
+        return estadoActual.solicitarEntrega();
     }
     
     /**

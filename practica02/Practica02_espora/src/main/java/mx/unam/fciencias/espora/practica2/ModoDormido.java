@@ -56,9 +56,10 @@ public class ModoDormido implements EstadoRobot {
      * Este método indica que el robot no puede cancelar la orden ya que está dormido.
      */
     @Override
-    public void cancelarOrden() {
+    public boolean cancelarOrden() {
         System.out.println("--- Modo Dormido ---\n" +
                         "No puedo cancelar la orden\n");
+        return false;
     }
 
     /**
@@ -74,8 +75,9 @@ public class ModoDormido implements EstadoRobot {
      * Este método indica que el robot no puede entregar el pedido ya que está dormido.
      */
     @Override
-    public void solicitarEntrega() {
+    public boolean solicitarEntrega() {
         System.out.println("--- Modo Dormido ---\n" +
                         "No puedo entregar el pedido\n");
+        return false;
     }
 }
