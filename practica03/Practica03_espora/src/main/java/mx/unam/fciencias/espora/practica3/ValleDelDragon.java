@@ -3,8 +3,7 @@ package mx.unam.fciencias.espora.practica3;
 /**
  * Clase para ValleDelDragon
  * 
- * Clase para el lugar de entrenamiento Valle del Dragon
- * donde entrenan a los Ninjas que van iniciando.
+ * Esta clase representa el lugar donde entrenan a los ninjas de nivel principiante.
  * 
  * @author Equipo Espora
  * @version 1.0
@@ -13,7 +12,7 @@ package mx.unam.fciencias.espora.practica3;
 public class ValleDelDragon extends CampoEntrenamiento { 
 
     /**
-     * Método constructor con su descripcion del Valle del Dragon
+     * Método constructor con su descripcion del Valle del Dragon.
      */
     public ValleDelDragon(){
         super("El Valle del Dragon, lugar donde se inicia el " +
