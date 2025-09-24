@@ -3,8 +3,7 @@ package mx.unam.fciencias.espora.practica3;
 /**
  * Clase para BosqueSombrio
  * 
- * Esta clase representa al BosqueSombrio lugar donde se entrenan a 
- * los ninjas de nivel intermedio.
+ * Esta clase representa el lugar donde entrenan a los ninjas de nivel intermedio.
  * 
  * @author Equipo Espora
  * @version 1.0
@@ -13,7 +12,7 @@ package mx.unam.fciencias.espora.practica3;
 public class BosqueSombrio extends CampoEntrenamiento{
     
     /**
-     * Método constructor con su descripcion del Bosque Sombrio
+     * Método constructor con su descripcion del Bosque Sombrio.
      */
     public BosqueSombrio(){
         super("El Bosque Sombrio, lugar de oscuridad, donde a la luz," +
