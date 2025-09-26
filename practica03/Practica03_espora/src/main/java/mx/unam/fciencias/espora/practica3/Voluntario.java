@@ -74,7 +74,8 @@ public class Voluntario {
     }
 
     /**
-     * Un toString para el String del voluntario
+     * Metodo toString para imprimir al Voluntario.
+     * @return Una cadena con el nombre, rango y clan del voluntario.
      */
     @Override
     public String toString() {

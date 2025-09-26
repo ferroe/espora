@@ -50,9 +50,9 @@ public class Paquete {
         StringBuilder cadena = new StringBuilder();
         cadena.append("--- " + this.nombre + " ---\n");
         for (Herramienta herramienta : this.herramientas) {
-            cadena.append(herramienta);
+            cadena.append(herramienta + "\n");
         }
-        cadena.append("Peso total: " + this.pesoTotal + " kg\n");
+        cadena.append("Peso total: ").append(String.format("%.2f", this.pesoTotal)).append(" kg\n");
         return cadena.toString();
     }
 }

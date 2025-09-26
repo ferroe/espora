@@ -15,7 +15,7 @@ public class MontanaEspiritual extends CampoEntrenamiento {
      * Método constructor con su descripcion de la Montana Espiritual.
      */
     public MontanaEspiritual(){
-        super("La Montana Espiritual, donde solo los mejores han" +
+        super("Montana Espiritual", "La Montana Espiritual, donde solo los mejores han " +
                     "tocado el lugar, simbolo de excelencia para los Ninjas");
     }
-}   
+}

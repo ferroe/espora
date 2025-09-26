@@ -8,6 +8,7 @@ package mx.unam.fciencias.espora.practica3;
  * @author Equipo Espora
  * @version 1.0
  */
+
 public class Prospecto {
 
     private String nombre;
@@ -63,7 +64,8 @@ public class Prospecto {
     }
 
     /**
-     * Un toString para el String del prospecto.
+     * Metodo toString para imprimir al Prospecto.
+     * @return Una cadena con el nombre y clan del prospecto.
      */
     @Override
     public String toString() {
