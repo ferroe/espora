@@ -9,6 +9,7 @@ package mx.unam.fciencias.espora.practica3;
  * @author Equipo Espora
  * @version 1.0
  */
+
 public class GrupoVoluntario implements Coleccion {
 
     private Voluntario[] voluntarios;
@@ -28,7 +29,7 @@ public class GrupoVoluntario implements Coleccion {
 
     /**
      * Método de la interfaz Colleccion.
-     * @return Al VoluntarioIterator.
+     * @return el iterador de Voluntarios.
      */
     @Override
     public Iterator crearIterador() {

@@ -14,8 +14,8 @@ public class ValleDelDragon extends CampoEntrenamiento {
     /**
      * Método constructor con su descripcion del Valle del Dragon.
      */
-    public ValleDelDragon(){
-        super("El Valle del Dragon, lugar donde se inicia el " +
-                    "viaje para ocnvertirse en uno de los mejores Ninja del lugar");
+    public ValleDelDragon() {
+        super("Valle del Dragon", "El Valle del Dragon, lugar donde se inicia el " +
+                    "viaje para convertirse en uno de los mejores Ninja del lugar");
     }
 }

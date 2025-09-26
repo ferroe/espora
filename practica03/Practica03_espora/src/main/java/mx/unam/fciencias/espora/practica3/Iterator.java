@@ -8,6 +8,7 @@ package mx.unam.fciencias.espora.practica3;
  * @author Equipo Espora
  * @version 1.0
  */
+
 public interface Iterator {
 
     /**

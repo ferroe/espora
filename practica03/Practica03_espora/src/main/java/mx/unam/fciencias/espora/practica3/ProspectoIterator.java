@@ -9,7 +9,8 @@ import java.util.Hashtable;
  * @author Equipo Espora
  * @version 1.0
  */
-public class ProspectoIterator implements Iterator{
+
+public class ProspectoIterator implements Iterator {
     
     private java.util.Iterator<Prospecto> iteradorInterno;
 
@@ -23,6 +24,7 @@ public class ProspectoIterator implements Iterator{
 
     /**
      * Verifica si hay mas elementos o si ya esta completo.
+     * @return true si hay mas elementos, false si ya no hay.
      */
     @Override
     public boolean hasNext() {
@@ -31,6 +33,7 @@ public class ProspectoIterator implements Iterator{
 
     /**
      * Pide al iterador interno el siguiente elemento.
+     * @return El siguiente elemento.
      */
     @Override
     public Object next() {

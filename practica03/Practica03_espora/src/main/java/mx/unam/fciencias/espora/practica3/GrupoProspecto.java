@@ -11,6 +11,7 @@ import java.util.Hashtable;
  * @author Equipo Espora
  * @version 1.0
  */
+
 public class GrupoProspecto implements Coleccion {
 
     private Hashtable<String, Prospecto> prospectos;
@@ -32,7 +33,7 @@ public class GrupoProspecto implements Coleccion {
         agregarProspecto(new Prospecto("Emi", 18, "Naca", 2));
         agregarProspecto(new Prospecto("Pedro", 21, "Akipichi", 1));
         agregarProspecto(new Prospecto("Jimmy", 23, "Osomaki", 3));
-
+        agregarProspecto(new Prospecto("Carlitos", 1, "Naca", 1));
     }
 
     /**
@@ -45,7 +46,7 @@ public class GrupoProspecto implements Coleccion {
 
     /**
      * Método de la interfaz Colleccion.
-     * @return Al ProspectoIterator.
+     * @return el iterador de Prospectos.
      */
     @Override
     public Iterator crearIterador() {

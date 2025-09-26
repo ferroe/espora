@@ -8,6 +8,7 @@ package mx.unam.fciencias.espora.practica3;
  * @author Equipo Espora
  * @version 1.0
  */
+
 public class VoluntarioIterator implements Iterator{
 
     private Voluntario[] voluntarios;

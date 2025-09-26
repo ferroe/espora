@@ -11,6 +11,7 @@ package mx.unam.fciencias.espora.practica3;
 
 public abstract class CampoEntrenamiento {
 
+    protected String nombre;
     protected String descripcion;
 
     /**
@@ -18,8 +19,18 @@ public abstract class CampoEntrenamiento {
      * 
      * @param descripcion Es la descripción del campo de entrenamiento.
      */
-    public CampoEntrenamiento(String descripcion) {
+    public CampoEntrenamiento(String nombre, String descripcion) {
+        this.nombre = nombre;
         this.descripcion = descripcion;
+    }
+
+    /**
+     * Método getter que devuelve el nombre del campo de entrenamiento.
+     *
+     * @return El nombre del campo de entrenamiento.
+     */
+    public String getNombre() {
+        return this.nombre;
     }
 
     /**
