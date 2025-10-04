@@ -12,9 +12,8 @@ package mx.unam.fciencias.espora.practica4;
 public interface Genero {
 
     /**
-     * Metodo getter del nombre del genero
-     * @return Devuelve el nombre del genero
+     * Obitiene el nombre del genero
+     * @return El nombre del genero
      */
     String getNombre();
-    
 }

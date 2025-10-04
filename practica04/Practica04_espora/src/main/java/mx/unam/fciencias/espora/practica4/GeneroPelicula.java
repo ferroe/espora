@@ -22,7 +22,7 @@ public enum GeneroPelicula implements Genero{
     private final String nombre;
 
     /**
-     * Método constructor de la clase GeneroPelicula.
+     * Constructor de la clase GeneroPelicula.
      * @param nombre El nombre del genero de la pelicula.
      */
     GeneroPelicula(String nombre) {
@@ -30,11 +30,10 @@ public enum GeneroPelicula implements Genero{
     }
 
     /**
-     * Método getter del nombre del genero de la pelicula.
+     * Obtiene el nombre del genero de la pelicula.
      * @return El nombre del genero de la pelicula.
      */
     public String getNombre() {
         return nombre;
     }   
 }
-

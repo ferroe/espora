@@ -18,27 +18,27 @@ public class Album {
     private String artista;
     private GeneroMusical generoMusical;
     private Year yearEstreno;
-    private double precioVenta;
+    private double precio;
 
     /**
-     * Método constructor de la clase Album.
+     * Constructor de la clase Album.
      * @param nombre Representa el nombre del album.
      * @param artista Representa al artista que hizo el album.
      * @param generoMusical Representa al genero musical que pertenece el album.
      * @param yearEstreno Representa el año en que se estreno el album.
-     * @param precioVenta Representa el precio de venta del album.
+     * @param precio Representa el precio de venta del album.
      */
     public Album(String nombre, String artista, GeneroMusical generoMusical,
-                 Year yearEstreno, double precioVenta) {
+                 Year yearEstreno, double precio) {
         this.nombre = nombre;
         this.artista = artista;
         this.generoMusical = generoMusical;
         this.yearEstreno = yearEstreno;
-        this.precioVenta = precioVenta;
+        this.precio = precio;
     }
 
     /**
-     * Metodo getter del nombre del album.
+     * Obtiene el nombre del album.
      * @return El nombre del album
      */
     public String getNombre() {
@@ -46,7 +46,7 @@ public class Album {
     }
 
     /**
-     * Metodo getter del artista del album
+     * Obtiene el artista del album
      * @return El nombre del arista del album
      */
     public String getArtista() {
@@ -54,7 +54,7 @@ public class Album {
     }
 
     /**
-     * Metodo getter del genero musical del album
+     * Obtiene el genero musical del album
      * @return El genero musical del album
      */
     public GeneroMusical getGeneroMusical() {
@@ -62,7 +62,7 @@ public class Album {
     }
 
     /**
-     * Metodo getter del año de estreno del album
+     * Obtiene el año de estreno del album
      * @return El año que se estreno el album
      */
     public Year getYearEstreno() {
@@ -70,10 +70,10 @@ public class Album {
     }
 
     /**
-     * Metodo getter del precio de venta del album
+     * Obtiene el precio de venta del album
      * @return El precio de venta del album
      */
-    public double getPrecioVenta() {
-        return precioVenta;
+    public double getPrecio() {
+        return precio;
     }   
 }

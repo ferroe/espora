@@ -22,7 +22,7 @@ public enum GeneroMusical implements Genero{
     private final String nombre;
 
     /**
-     * Método constructor de la clase GeneroMusical.
+     * Constructor de la clase GeneroMusical.
      * @param nombre El nombre del genero musical.
      */
     GeneroMusical(String nombre) {
@@ -30,7 +30,7 @@ public enum GeneroMusical implements Genero{
     }
 
     /**
-     * Método getter del nombre del genero musical.
+     * Obtiene el nombre del genero musical.
      * @return El nombre del genero musical.
      */
     public String getNombre() {

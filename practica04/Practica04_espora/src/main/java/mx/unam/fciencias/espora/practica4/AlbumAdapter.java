@@ -46,7 +46,7 @@ public class AlbumAdapter implements ProductoCatalogo {
      */
     @Override
     public double getPrecio() {
-        return this.album.getPrecioVenta();
+        return this.album.getPrecio();
     }
 
     /**
@@ -54,13 +54,14 @@ public class AlbumAdapter implements ProductoCatalogo {
      * @return Devuelve un String con las caracteristicas del album.
      */
     @Override
-    public String consultarProducto() {
-    String precioFormateado = String.format("%.2f", this.album.getPrecioVenta());
-    return "--- ÁLBUM DE MÚSICA ---\n" +
+    public String imprimirProducto() {
+    String precioFormateado = String.format("%.2f", this.album.getPrecio());
+    String infoAlbum = "--- ÁLBUM DE MÚSICA ---\n" +
            "Título: " + this.album.getNombre() + "\n" +
            "Artista: " + this.album.getArtista() + "\n" +
            "Género: " + this.album.getGeneroMusical().getNombre() + "\n" +
            "Año de Estreno: " + this.album.getYearEstreno() + "\n" +
            "Precio: $" + precioFormateado;
+    return infoAlbum;
     }
 }
