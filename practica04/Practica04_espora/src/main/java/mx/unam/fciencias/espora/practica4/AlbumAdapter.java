@@ -36,8 +36,8 @@ public class AlbumAdapter implements ProductoCatalogo {
      * @return Devuelve el genero musical del album.
      */
     @Override
-    public String getGenero() {
-        return this.album.getGeneroMusical().getNombre();
+    public Genero getGenero() {
+        return this.album.getGeneroMusical();
     }
 
     /**
