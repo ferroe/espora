@@ -10,7 +10,7 @@ package mx.unam.fciencias.espora.practica4;
  * @version 1.0
  */
 
-public enum GeneroPelicula {
+public enum GeneroPelicula implements Genero{
 
     /**
      * Generos de Peliculas disponibles.

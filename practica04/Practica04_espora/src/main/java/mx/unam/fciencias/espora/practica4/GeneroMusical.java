@@ -10,7 +10,7 @@ package mx.unam.fciencias.espora.practica4;
  * @version 1.0
  */
 
-public enum GeneroMusical {
+public enum GeneroMusical implements Genero{
 
     /**
      * Generos Musicales disponibles.
