@@ -15,5 +15,5 @@ public interface Genero {
      * Obitiene el nombre del genero
      * @return El nombre del genero
      */
-    String getNombre();
+    public String getNombre();
 }

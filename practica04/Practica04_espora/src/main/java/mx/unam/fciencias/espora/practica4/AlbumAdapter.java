@@ -56,7 +56,7 @@ public class AlbumAdapter implements ProductoCatalogo {
     @Override
     public String imprimirProducto() {
     String precioFormateado = String.format("%.2f", this.album.getPrecio());
-    String infoAlbum = "--- ÁLBUM DE MÚSICA ---\n" +
+    String infoAlbum = "--- Álbum musical ---\n" +
            "Título: " + this.album.getNombre() + "\n" +
            "Artista: " + this.album.getArtista() + "\n" +
            "Género: " + this.album.getGeneroMusical().getNombre() + "\n" +

@@ -20,10 +20,7 @@ public class Pelicula extends Producto {
      * @param precio Precio de la película.
      */
     public Pelicula(String nombre, String director, GeneroPelicula genero, String sinopsis, int duracion, double precio) {
-        this.nombre = nombre;
-        this.director = director;
-        this.genero = genero;
-        this.sinopsis = sinopsis;
+        super(nombre, director, genero, sinopsis);
         this.duracion = duracion;
         this.precio = precio;
     }
@@ -56,7 +53,7 @@ public class Pelicula extends Producto {
         infoPeli += "Nombre: " + nombre + "\n";
         infoPeli += "Director: " + director + "\n";
         infoPeli += "Duracion: " + duracion + " mins\n";
-        infoPeli += "Genero: " + genero + "\n";
+        infoPeli += "Genero: " + genero.getNombre() + "\n";
         infoPeli += "Sinopsis: " + sinopsis + "\n";
         infoPeli += "Precio: $" + precio;
         return infoPeli;
