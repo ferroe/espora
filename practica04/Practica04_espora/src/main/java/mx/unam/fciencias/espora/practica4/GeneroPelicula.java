@@ -10,14 +10,15 @@ package mx.unam.fciencias.espora.practica4;
  * @version 1.0
  */
 
-public enum GeneroPelicula implements Genero{
+public enum GeneroPelicula implements Genero {
 
     /**
      * Generos de Peliculas disponibles.
      */
     AVENTURA("Aventura"),
-    CIENCIA_FICCION("Ciencia Ficción"),
-    FANTASIA("Fantasía");
+    CIENCIA_FICCION("Ciencia Ficcion"),
+    FANTASIA("Fantasia"),
+    ANIMADA("Animada");
 
     private final String nombre;
 

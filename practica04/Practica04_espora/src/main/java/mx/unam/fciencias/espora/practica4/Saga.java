@@ -25,10 +25,8 @@ public class Saga extends Producto {
      * @param sinopsis Sinopsis de la saga.
      */
     public Saga(String nombre, String director, GeneroPelicula genero, String sinopsis) {
-        this.nombre = nombre;
-        this.director = director;
-        this.genero = genero;
-        this.sinopsis = sinopsis;
+        super(nombre, director, genero, sinopsis);
+        this.productos = new ArrayList<Producto>();
     }
 
     /**
@@ -91,13 +89,13 @@ public class Saga extends Producto {
         String infoSaga = "--- Informacion de la Saga ---\n";
         infoSaga += "Nombre: " + nombre + "\n";
         infoSaga += "Director: " + director + "\n";
-        infoSaga += "Duracion total: " + duracion + " minutos\n";
-        infoSaga += "Genero: " + genero + "\n";
+        infoSaga += "Duracion total: " + getDuracion() + " minutos\n";
+        infoSaga += "Genero: " + genero.getNombre() + "\n";
         infoSaga += "Sinopsis: " + sinopsis + "\n";
-        infoSaga += "Precio total: $" + precio + "\n";
-        infoSaga += "Productos en la saga:\n";
+        infoSaga += "Precio total: $" + getPrecio() + "\n";
+        infoSaga += "Productos en la saga:\n\n";
         for (Producto producto : productos) {
-            infoSaga += "- " + producto.imprimirProducto() + "\n";
+            infoSaga += producto.imprimirProducto() + "\n";
         }
         return infoSaga;
     }

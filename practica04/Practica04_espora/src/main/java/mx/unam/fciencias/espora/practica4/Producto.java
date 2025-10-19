@@ -18,6 +18,21 @@ public abstract class Producto implements ProductoCatalogo {
     protected double precio;
 
     /**
+     * Constructor de la clase Producto.
+     * 
+     * @param nombre   Nombre del producto.
+     * @param director Director de la saga/película.
+     * @param genero   Género del producto.
+     * @param sinopsis Sinopsis de la saga/película.
+     */
+    public Producto(String nombre, String director, GeneroPelicula genero, String sinopsis) {
+        this.nombre = nombre;
+        this.director = director;
+        this.genero = genero;
+        this.sinopsis = sinopsis;
+    }
+
+    /**
      * Obtiene el nombre del producto.
      * @return El nombre del producto.
      */
