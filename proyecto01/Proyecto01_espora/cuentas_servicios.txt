@@ -1,0 +1,23 @@
+# num_cuenta, servicio_adicional
+
+# Servicios de Alfredo
+
+# Cuenta 12904 con 1 servicio
+12904,ALERTAS_PREMIUM
+
+# Cuenta 20001 2 servicios
+20001,SEGURO_ANTIFRAUDE
+20001,RECOMPENSAS
+
+# Cuenta 30951 3 servicios
+
+30951,SEGURO_ANTIFRAUDE
+30951,RECOMPENSAS
+30951,ALERTAS_PREMIUM
+
+# Servicios de Virginia
+
+# Cuenta 52051 1 servicio
+52051,SEGURO_ANTIFRAUDE
+
+#Demas cuentas sin servicios
