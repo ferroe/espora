@@ -63,5 +63,4 @@ public class Cliente implements Observador {
     public String getNIP() {
         return this.nip;
     }
-
 }

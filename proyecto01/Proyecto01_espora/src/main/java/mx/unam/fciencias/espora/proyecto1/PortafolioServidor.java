@@ -10,20 +10,22 @@ import java.util.Map;
  * @author Equipo Espora
  * @version 1.0
  */
-public class PortafolioServidor extends UnicastRemoteObject implements PortafolioRemoto {
-    
-    private Map<String, Cuenta> cuentaReal;
+public class PortafolioServidor extends UnicastRemoteObject implements CuentaRemota {
+
+    private Map<String, Cuenta> cuentasMap;
     private Map<String, Cliente> clientes;
+    private static final long serialVersionUID = 1L;
+    public static final int RMI_OBJECT_PORT = 1100;
 
     /**
      * Constructor de la clase PortafolioServidor
-     * @param cuentaReal Representa la cuenta real del cliente
+     * @param cuentasMap Representa el mapa de cuentas del cliente
      * @param clientes Representa los clientes del banco
      * @throws RemoteException Si ocurre un error en la comunicación remota
      */
-    public PortafolioServidor(Map<String, Cuenta> cuentaReal, Map<String, Cliente> clientes) throws RemoteException {
-        super();
-        this.cuentaReal = cuentaReal;
+    public PortafolioServidor(Map<String, Cuenta> cuentasMap, Map<String, Cliente> clientes) throws RemoteException {
+        super(RMI_OBJECT_PORT);
+        this.cuentasMap = cuentasMap;
         this.clientes = clientes;
     }
 
@@ -39,7 +41,7 @@ public class PortafolioServidor extends UnicastRemoteObject implements Portafoli
         if (!verificarNIP(numeroCuenta, nip)) {
             throw new RemoteException("El NIP es incorrecto, verificalo de nuevo.");
         }
-        cuentaReal.get(numeroCuenta).depositar(monto);
+        cuentasMap.get(numeroCuenta).depositar(monto);
     }
 
     /**
@@ -54,7 +56,7 @@ public class PortafolioServidor extends UnicastRemoteObject implements Portafoli
         if (!verificarNIP(numeroCuenta, nip)) {
             throw new RemoteException("El NIP es incorrecto, verificalo de nuevo.");
         }
-        return cuentaReal.get(numeroCuenta).getSaldo();
+        return cuentasMap.get(numeroCuenta).getSaldo();
     }
 
     /**
@@ -71,7 +73,7 @@ public class PortafolioServidor extends UnicastRemoteObject implements Portafoli
         }
 
         double saldoGlobal = 0.0;
-        for (Cuenta cuenta: cuentaReal.values()) {
+        for (Cuenta cuenta: cuentasMap.values()) {
             if (cuenta.getIdCliente().equals(idCliente)) {
                 saldoGlobal += cuenta.getSaldo();
             }
@@ -94,8 +96,8 @@ public class PortafolioServidor extends UnicastRemoteObject implements Portafoli
             throw new RemoteException("El NIP es incorrecto, verificalo de nuevo.");
         }
 
-        Cuenta origen = cuentaReal.get(cuentaOrigen);
-        Cuenta destino = cuentaReal.get(cuentaDestino);
+        Cuenta origen = cuentasMap.get(cuentaOrigen);
+        Cuenta destino = cuentasMap.get(cuentaDestino);
 
         if (origen == null || destino == null) {
             throw new RemoteException("Verifica tus datos, no se pudo completar la solicitud.");
@@ -117,7 +119,7 @@ public class PortafolioServidor extends UnicastRemoteObject implements Portafoli
      * @return true si el NIP es correcto, false en caso contrario
      */
     private boolean verificarNIP(String numeroCuenta, String nip) {
-        Cuenta cuenta = cuentaReal.get(numeroCuenta);
+        Cuenta cuenta = cuentasMap.get(numeroCuenta);
         if (cuenta == null) {
             return false;
         }
@@ -139,5 +141,31 @@ public class PortafolioServidor extends UnicastRemoteObject implements Portafoli
         }
         String nipCorrecto = cliente.getNIP();
         return nipCorrecto != null && nipCorrecto.equals(nip);
+    }
+
+    /**
+     * Retira dinero de una cuenta
+     *
+     * @param numeroCuenta numero de la cuenta
+     * @param monto Monto a retirar
+     * @param nip NIP del cliente
+     * @throws RemoteException Si el NIP es incorrecto o la operación falla
+     */
+    @Override
+    public void retirar(String numeroCuenta, double monto, String nip) throws RemoteException {
+        if (!verificarNIP(numeroCuenta, nip)) {
+            throw new RemoteException("El NIP es incorrecto, verifícalo de nuevo.");
+        }
+
+        Cuenta cuenta = cuentasMap.get(numeroCuenta);
+        if (cuenta == null) {
+            throw new RemoteException("La cuenta " + numeroCuenta + " no existe.");
+        }
+
+        boolean exito = cuenta.comprar(monto);
+
+        if (!exito) {
+            throw new RemoteException("Retiro fallido. Fondos insuficientes o la cuenta está bloqueada/cerrada.");
+        }
     }
 }
