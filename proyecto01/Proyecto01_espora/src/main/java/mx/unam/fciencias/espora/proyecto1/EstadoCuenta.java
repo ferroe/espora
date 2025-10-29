@@ -12,11 +12,14 @@ public interface EstadoCuenta {
 
     /**
      * Permite a la cuenta realizar una compra.
+     * @param monto Monto de la compra.
+     * @return true si la compra fue exitosa, false en caso contrario.
      */
-    public void comprar(double monto);
+    public boolean comprar(double monto);
 
     /**
      * Permite a la cuenta realizar un depósito.
+     * @param monto Monto del depósito.
      */
     public void depositar(double monto);
 
@@ -26,9 +29,9 @@ public interface EstadoCuenta {
     public void generarIntereses();
 
     /**
-     * Muestra cuando se ha sobrepasado el límite de la cuenta.
+     * Aplica el cargo mensual correspondiente.
      */
-    public void sobrelimitar(double monto);
+    public void cargoMensual();
 
     /**
      * Permite que la cuenta sea bloqueada.
