@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
  * @author Equipo Espora
  * @version 1.0
  */
-public interface CuentaRemota extends Remote{
+public interface CuentaRemota extends Remote {
 
     /**
      * Metodo para depositar dinero en una cuenta
@@ -41,10 +41,19 @@ public interface CuentaRemota extends Remote{
     boolean transferirEntreCuentas(String cuentaOrigen, String cuentaDestino, double monto, String nip) throws RemoteException;
 
     /**
+     * Metodo para consultar el saldo de una sola cuenta
+     * @param numeroCuenta Representa el número de cuenta
+     * @param nip Representa el NIP del cliente
+     * @return El saldo de la cuenta
+     * @throws RemoteException Si ocurre un error en la comunicación remota
+     */
+    public double consultarSaldo(String numeroCuenta, String nip) throws RemoteException;
+
+    /**
      * Metodo para obtener el saldo global de todas las cuentas de un cliente
      * @param idCliente Representa el ID del cliente
      * @param nip Representa el NIP del cliente
      * @throws RemoteException Si ocurre un error en la comunicación remota
-     */ 
+     */
     double getSaldoGlobal(String idCliente, String nip) throws RemoteException;
 }

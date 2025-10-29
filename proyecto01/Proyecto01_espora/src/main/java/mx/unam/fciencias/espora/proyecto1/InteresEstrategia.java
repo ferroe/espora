@@ -1,10 +1,7 @@
 package mx.unam.fciencias.espora.proyecto1;
 
 /**
- * Interfaz InteresEstrategia.
- * 
- * Esta clase representa a un album de nuestro sistema
- * con sus atributos que lo definen.
+ * Interfaz para las estrategias de cálculo de interés
  * 
  * @author Equipo Espora
  * @version 1.0
