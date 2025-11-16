@@ -1,4 +1,5 @@
-import mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2;
+
 import java.util.Map;
 
 /**
