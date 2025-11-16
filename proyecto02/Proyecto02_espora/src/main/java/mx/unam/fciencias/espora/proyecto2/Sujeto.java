@@ -1,0 +1,29 @@
+package mx.unam.fciencias.espora.proyecto2;
+
+/**
+ * Es la interfaz que define los metodos del sujeto
+ * del Observer
+ * 
+ * @author Equipo Espora
+ * @version 1.0
+ */
+
+public interface Sujeto {
+
+    /**
+     * Registra un observador
+     * @param o el observador a registrar
+     */
+    public void registrarObservador(Observador o);
+
+    /**
+     * Remueve un observador
+     * @param o el observador a remover
+     */
+    public void removerObservador(Observador o);
+
+    /**
+     * Notifica a todos los observadores registrados
+     */
+    public void notificarObservadores();
+}
