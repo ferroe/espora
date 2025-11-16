@@ -1,4 +1,4 @@
-import mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2;
 
 /**
  * Esta clase representa el estado saludable de una poblacion,

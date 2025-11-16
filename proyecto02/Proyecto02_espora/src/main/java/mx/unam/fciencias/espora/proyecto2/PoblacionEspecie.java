@@ -1,4 +1,4 @@
-import mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2;
 
 import java.util.HashMap;
 import java.util.Map;
