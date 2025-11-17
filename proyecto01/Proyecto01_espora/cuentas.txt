@@ -27,7 +27,3 @@
 
 # Cuenta PlanAnual con mes 12 pero saldo < 50k
 89124,3202,AHORRO,PLAN_MENSUAL,10000.00,ACTIVA,12,90000.00
-
-
-
-

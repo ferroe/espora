@@ -109,4 +109,13 @@ public class EstadoSobregirada implements EstadoCuenta {
     public void reabrirCuenta() {
         System.out.println("La cuenta se encuentra en estado Sobregirada. No puede reabrirse.");
     }
+
+    /**
+     * Obtiene el nombre del estado actual de la cuenta.
+     * @return Nombre del estado actual.
+     */
+    @Override
+    public String getNombreEstado() {
+        return "Sobregirada";
+    }
 }

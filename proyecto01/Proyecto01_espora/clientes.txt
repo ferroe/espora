@@ -1,4 +1,3 @@
 # id_cliente, nombre, apellidoPaterno, apellidoMaterno, nip
-
 3201,Alfredo,Contreras,Garcia,2432
 3202,Virginia,Hernandez,Procopio,1234

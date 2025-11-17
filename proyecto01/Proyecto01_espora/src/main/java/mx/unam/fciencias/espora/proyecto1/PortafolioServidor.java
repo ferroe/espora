@@ -118,9 +118,11 @@ public class PortafolioServidor extends UnicastRemoteObject implements CuentaRem
      * @param nip Representa el NIP del cliente
      * @return true si el NIP es correcto, false en caso contrario
      */
-    private boolean verificarNIP(String numeroCuenta, String nip) {
+    private boolean verificarNIP(String numeroCuenta, String nip) throws RemoteException {
+        System.out.println("verificarNIP para cuenta " + numeroCuenta);
         Cuenta cuenta = cuentasMap.get(numeroCuenta);
         if (cuenta == null) {
+            System.out.println("verificarNIP falló - Cuenta no encontrada");
             return false;
         }
 
@@ -135,12 +137,16 @@ public class PortafolioServidor extends UnicastRemoteObject implements CuentaRem
      * @return true si el NIP es correcto, false en caso contrario
      */
     private boolean verificarNIPCliente(String idCliente, String nip) {
+        System.out.println("Verificando NIP para cliente: " + idCliente);
         Cliente cliente = clientes.get(idCliente);
         if (cliente == null) {
+            System.out.println("Cliente no encontrado: " + idCliente);
             return false;
         }
         String nipCorrecto = cliente.getNIP();
-        return nipCorrecto != null && nipCorrecto.equals(nip);
+        boolean resultado = nipCorrecto != null && nipCorrecto.equals(nip);
+        System.out.println("Comparando NIPs [" + nip + "] con [" + nipCorrecto + "]" + " - Resultado: " + resultado);
+        return resultado;
     }
 
     /**
@@ -167,5 +173,113 @@ public class PortafolioServidor extends UnicastRemoteObject implements CuentaRem
         if (!exito) {
             throw new RemoteException("Retiro fallido. Fondos insuficientes o la cuenta está bloqueada/cerrada.");
         }
+    }
+
+    /**
+     * Ejecuta el proceso mensual para un cliente
+     *
+     * @param idCliente ID del cliente
+     * @param nip NIP del cliente
+     * @throws RemoteException Si el NIP es incorrecto
+     */
+    @Override
+    public void ejecutarProcesoMensual(String idCliente, String nip) throws RemoteException {
+        if (!verificarNIPCliente(idCliente, nip)) {
+            throw new RemoteException("El NIP es incorrecto, verificalo de nuevo.");
+        }
+        GestorMensual gestor = new GestorMensual();
+        for (Cuenta cuenta : cuentasMap.values()) {
+            if (cuenta.getIdCliente().equals(idCliente)) {
+                gestor.ejecutarProcesoCuenta(cuenta);
+            }
+        }
+        System.out.println("Servidor: Proceso mensual completado para cliente " + idCliente);
+    }
+
+    /**
+     * Metodo para obtener el nombre del estado de una cuenta
+     * @param numeroCuenta Representa el número de cuenta
+     * @param nip Representa el NIP del cliente
+     * @return El nombre del estado de la cuenta
+     * @throws RemoteException Si ocurre un error en la comunicación remota
+     */
+    @Override
+    public String getNombreEstado(String numeroCuenta, String nip) throws RemoteException {
+        if (!verificarNIP(numeroCuenta, nip)) {
+            throw new RemoteException("El NIP es incorrecto, verificalo de nuevo");
+        }
+        Cuenta cuenta = cuentasMap.get(numeroCuenta);
+        if (cuenta == null) {
+            throw new RemoteException("La cuenta " + numeroCuenta + " no existe");
+        }
+        return cuenta.getNombreEstado();
+    }
+
+    /**
+     * Metodo para bloquear una cuenta
+     * @param numeroCuenta Representa el número de cuenta
+     * @param nip Representa el NIP del cliente
+     * @throws RemoteException Si ocurre un error en la comunicación remota
+     */
+    public void bloquearCuenta(String numeroCuenta, String nip) throws RemoteException {
+        if (!verificarNIP(numeroCuenta, nip)) {
+            throw new RemoteException("El NIP es incorrecto, verificalo de nuevo");
+        }
+        Cuenta cuenta = cuentasMap.get(numeroCuenta);
+        if (cuenta == null) {
+            throw new RemoteException("La cuenta " + numeroCuenta + " no existe");
+        }
+        cuenta.bloquearCuenta();
+    }
+
+    /**
+     * Metodo para desbloquear una cuenta
+     * @param numeroCuenta Representa el número de cuenta
+     * @param nip Representa el NIP del cliente
+     * @throws RemoteException Si ocurre un error en la comunicación remota
+     */
+    public void desbloquearCuenta(String numeroCuenta, String nip) throws RemoteException {
+        if (!verificarNIP(numeroCuenta, nip)) {
+            throw new RemoteException("El NIP es incorrecto, verificalo de nuevo");
+        }
+        Cuenta cuenta = cuentasMap.get(numeroCuenta);
+        if (cuenta == null) {
+            throw new RemoteException("La cuenta " + numeroCuenta + " no existe");
+        }
+        cuenta.desbloquearCuenta();
+    }
+
+    /**
+     * Metodo para suspender una cuenta
+     * @param numeroCuenta Representa el número de cuenta
+     * @param nip Representa el NIP del cliente
+     * @throws RemoteException Si ocurre un error en la comunicación remota
+     */
+    public void suspenderCuenta(String numeroCuenta, String nip) throws RemoteException {
+        if (!verificarNIP(numeroCuenta, nip)) {
+            throw new RemoteException("El NIP es incorrecto, verificalo de nuevo");
+        }
+        Cuenta cuenta = cuentasMap.get(numeroCuenta);
+        if (cuenta == null) {
+            throw new RemoteException("La cuenta " + numeroCuenta + " no existe");
+        }
+        cuenta.suspenderCuenta();
+    }
+
+    /**
+     * Metodo para reabrir una cuenta
+     * @param numeroCuenta Representa el número de cuenta
+     * @param nip Representa el NIP del cliente
+     * @throws RemoteException Si ocurre un error en la comunicación remota
+     */
+    public void reabrirCuenta(String numeroCuenta, String nip) throws RemoteException {
+        if (!verificarNIP(numeroCuenta, nip)) {
+            throw new RemoteException("El NIP es incorrecto, verificalo de nuevo");
+        }
+        Cuenta cuenta = cuentasMap.get(numeroCuenta);
+        if (cuenta == null) {
+            throw new RemoteException("La cuenta " + numeroCuenta + " no existe");
+        }
+        cuenta.reabrirCuenta();
     }
 }

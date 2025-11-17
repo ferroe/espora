@@ -24,7 +24,7 @@ public class SeguroAntifraude extends ServicioDecorador {
     @Override
     public boolean comprar(double monto) {
         if (esCompraFraudulenta(monto)) {
-            String msj = "ALERTA: La compra de $." + monto + " ha sido rechaza por posible fraude.";
+            String msj = "ALERTA: La compra de $" + monto + " ha sido rechazada por posible fraude.";
             System.out.println(msj);
             super.cuentaDecorada.registrarOperacion(msj);
             return false;

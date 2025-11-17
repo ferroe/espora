@@ -100,4 +100,13 @@ public class EstadoCongelada implements EstadoCuenta {
     public void reabrirCuenta() {
         System.out.println("La cuenta se encuentra en estado Congelada. No puede reabrirse.");
     }
+
+    /**
+     * Obtiene el nombre del estado actual de la cuenta.
+     * @return Nombre del estado actual.
+     */
+    @Override
+    public String getNombreEstado() {
+        return "Congelada";
+    }
 }

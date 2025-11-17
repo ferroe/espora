@@ -191,4 +191,13 @@ public abstract class ServicioDecorador implements Cuenta {
     public void avanzarMes() {
         cuentaDecorada.avanzarMes();
     }
+
+    /**
+     * Obtiene el nombre del estado de la cuenta decorada
+     * @return el nombre del estado de la cuenta decorada
+     */
+    @Override
+    public String getNombreEstado() {
+        return cuentaDecorada.getNombreEstado();
+    }
 }

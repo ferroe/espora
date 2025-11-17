@@ -180,10 +180,26 @@ public class CuentaCliente implements Cuenta, Sujeto {
 
     /**
      * Método auxiliar para generar el resumen mensual
+     * de operaciones y saldo
      */
     private String generarResumenMensual() {
-        return "Resumen de fin de mes: " + numCuenta +
-               ": Su saldo final es $" + String.format("%.2f", this.saldo);
+        StringBuilder resumen = new StringBuilder();
+        
+        resumen.append("--- Resumen Mensual Cuenta: ").append(numCuenta).append(" ---\n");
+        
+        resumen.append("Operaciones del mes:\n");
+        if (historialOperaciones.isEmpty()) {
+            resumen.append("  (No hubo operaciones este mes)\n");
+        } else {
+            for (String operacion : historialOperaciones) {
+                resumen.append("  - ").append(operacion).append("\n");
+            }
+        }
+        
+        resumen.append("Saldo final: $").append(String.format("%.2f", this.saldo)).append("\n");
+        resumen.append("------------------------------------------");
+
+        return resumen.toString();
     }
 
     /**
@@ -341,5 +357,13 @@ public class CuentaCliente implements Cuenta, Sujeto {
         this.antiguedadMeses++;
         this.mesesPromedio++;
         this.sumaSaldosPromedio += this.saldo;
+    }
+
+    /**
+     * Obtiene el nombre del estado de la cuenta
+     * @return Nombre del estado de la cuenta
+     */
+    public String getNombreEstado() {
+        return estadoActual.getNombreEstado();
     }
 }
