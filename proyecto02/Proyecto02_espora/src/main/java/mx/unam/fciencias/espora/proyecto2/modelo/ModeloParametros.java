@@ -1,4 +1,4 @@
-package mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2.modelo;
 
 /**
  * La clase ModeloParametros que maneja los parametros 
@@ -9,8 +9,6 @@ package mx.unam.fciencias.espora.proyecto2;
 
 public class ModeloParametros {
 
-    private double calidadAgua;
-    private double nivelAgua;
     private double nivelContaminacion;
     private double nivelEspeciesInvasoras;
 
@@ -18,8 +16,6 @@ public class ModeloParametros {
      * Constructor de ModeloParametros
      */
     public ModeloParametros() {
-        this.calidadAgua = 1.0;
-        this.nivelAgua = 0.8;
         this.nivelContaminacion = 0.1;
         this.nivelEspeciesInvasoras = 0.1;
     }
@@ -29,7 +25,8 @@ public class ModeloParametros {
      * @return La calidad del agua
      */
     public double getCalidadAgua() {
-        return this.calidadAgua;
+        double calidadAgua = 100.0 - (this.nivelContaminacion * 1.5);
+        return calidadAgua;
     }
 
     /**
@@ -37,7 +34,8 @@ public class ModeloParametros {
      * @return El nivel de agua
      */
     public double getNivelAgua() {
-        return this.nivelAgua;
+        double nivelAgua = 100.0 - (this.nivelContaminacion * 1.5);
+        return nivelAgua;
     }
 
     /**
@@ -54,22 +52,6 @@ public class ModeloParametros {
      */
     public double getNivelEspeciesInvasoras() {
         return this.nivelEspeciesInvasoras;
-    }
-
-    /**
-     * La calidad del agua
-     * @param calidadAgua La calidad del agua
-     */
-    public void setCalidadAgua(double calidadAgua) {
-        this.calidadAgua = calidadAgua;
-    }
-
-    /**
-     * El nivel de agua
-     * @param nivelAgua El nivel de agua
-     */
-    public void setNivelAgua(double nivelAgua) {
-        this.nivelAgua = nivelAgua;
     }
 
     /**

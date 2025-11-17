@@ -1,7 +1,8 @@
-package mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import mx.unam.fciencias.espora.proyecto2.vista.Observer;
 
 /**
  * La clase Ecosistema que representa el ecosistema 
@@ -50,28 +51,6 @@ public class Ecosistema implements Sujeto {
     }
 
     /**
-     * Establece el parametro ambiental del ecosistema
-     * @param nombreParametro El nombre del parametro
-     * @param valor El valor del parametro
-     */
-    public void setParametro (String nombreParametro, double valor) {
-        switch (nombreParametro) {
-            case "contaminacion":
-                this.modeloParametros.setNivelContaminacion(valor);
-                break;
-            case "especiesInvasoras":
-                this.modeloParametros.setNivelEspeciesInvasoras(valor);
-                break;
-            case "calidadAgua":
-                this.modeloParametros.setCalidadAgua(valor);
-                break;
-            case "nivelAgua":
-                this.modeloParametros.setNivelAgua(valor);
-                break;
-        }
-    }
-
-    /**
      * Registra un observador en el ecosistema
      * @param o El observador a registrar
      */
@@ -98,4 +77,4 @@ public class Ecosistema implements Sujeto {
             obs.actualizar();
         }
     } 
-}  
+}

@@ -1,4 +1,6 @@
-package mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2.modelo;
+
+import mx.unam.fciencias.espora.proyecto2.vista.Observer;
 
 /**
  * Es la interfaz que define los metodos del sujeto
@@ -14,13 +16,13 @@ public interface Sujeto {
      * Registra un observador
      * @param o el observador a registrar
      */
-    public void registrarObservador(Observador o);
+    public void registrarObservador(Observer o);
 
     /**
      * Remueve un observador
      * @param o el observador a remover
      */
-    public void removerObservador(Observador o);
+    public void removerObservador(Observer o);
 
     /**
      * Notifica a todos los observadores registrados

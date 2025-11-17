@@ -1,6 +1,8 @@
-package mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2.vista;
 
 import java.util.List;
+import mx.unam.fciencias.espora.proyecto2.modelo.Ecosistema;
+import mx.unam.fciencias.espora.proyecto2.modelo.ModeloParametros;
 
 /**
  * Clase PanelParametros que implementa el Observer
@@ -9,7 +11,7 @@ import java.util.List;
  * @version 1.0
  */
 
-public class PanelParametros implements Observer{
+public class PanelParametros implements Observer {
 
     private Ecosistema ecosistema;
 

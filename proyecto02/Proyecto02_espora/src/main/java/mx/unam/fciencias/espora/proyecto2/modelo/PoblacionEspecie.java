@@ -1,4 +1,4 @@
-package mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2.modelo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import java.util.Map;
  * @version 1.0
  */
 
-public class PoblacionEspecie {
+public class PoblacionEspecie implements ComponenteEcosistema{
 
     private String nombre;
     private double saludPromedio;
@@ -61,11 +61,10 @@ public class PoblacionEspecie {
      * @param parametros Los parametros ambientales que afectan a la poblacion
      */
     @Override
-    public void actualizar (ParametroAmbiental parametros) {
-        
+    public void actualizar (ModeloParametros parametros) {
         Map<String, Double> mapaDeParametros = new HashMap<>();
         mapaDeParametros.put("contaminacion", parametros.getNivelContaminacion());
-        mapaDeParametros.put("especiesInvasoras", parametros.getNivelEspecies());
+        mapaDeParametros.put("especiesInvasoras", parametros.getNivelEspeciesInvasoras());
         mapaDeParametros.put("calidadAgua", parametros.getCalidadAgua());
         mapaDeParametros.put("nivelAgua", parametros.getNivelAgua());
 
@@ -161,7 +160,7 @@ public class PoblacionEspecie {
     /**
      * Evalua si la poblacion debe cambiar de estado
      */
-    private void evaluarCambioDeEstado() {
+    private void evaluarCambioEstado() {
         if (this.tamanio > LIMITE_RIESGO) {
             if (this.estadoActual != this.estadoSaludable) {
                  this.actualizarEstado(this.estadoSaludable);
@@ -181,7 +180,6 @@ public class PoblacionEspecie {
      * Obtiene el estado actual de la poblacion
      * @return El estado actual de la poblacion
      */
-    @Override
     public String getEstado() {
         if (estadoActual instanceof EstadoSaludable) return "Saludable";
         if (estadoActual instanceof EstadoRiesgo) return "En Riesgo"; 

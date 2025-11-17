@@ -1,5 +1,4 @@
-package mx.unam.fciencias.espora.proyecto2;
-
+package mx.unam.fciencias.espora.proyecto2.modelo;
 /**
  * La interfaz ComponenteEcosistema 
  * de nuestro ecosistema Xochimilco
@@ -14,7 +13,7 @@ public interface ComponenteEcosistema {
      * Actualiza el estado del componente del ecosistema
      * @param parametro El parametro ambiental 
      */
-    public void actualizar(ParametroAmbiental parametro);
+    public void actualizar(ModeloParametros parametro);
 
     /**
      * El nombre del componente del ecosistema

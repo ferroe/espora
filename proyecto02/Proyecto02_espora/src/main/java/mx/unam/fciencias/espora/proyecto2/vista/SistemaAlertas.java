@@ -1,6 +1,9 @@
-package mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2.vista;
 
 import java.util.List;
+import mx.unam.fciencias.espora.proyecto2.modelo.ComponenteEcosistema;
+import mx.unam.fciencias.espora.proyecto2.modelo.Ecosistema;
+import mx.unam.fciencias.espora.proyecto2.modelo.ZonaEcosistema;
 
 /**
  * Clase SistemaAlertas que implementa el Observer
@@ -10,7 +13,7 @@ import java.util.List;
  * @version 1.0
  */
 
-public class SistemaAlertas implements Observer{
+public class SistemaAlertas implements Observer {
 
     private Ecosistema ecosistema;
 
@@ -54,4 +57,4 @@ public class SistemaAlertas implements Observer{
     }
 }
 
-   
+

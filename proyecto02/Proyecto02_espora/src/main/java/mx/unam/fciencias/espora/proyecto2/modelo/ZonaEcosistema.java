@@ -1,4 +1,4 @@
-package mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +62,7 @@ public class ZonaEcosistema implements ComponenteEcosistema {
      * @param parametro El parametro ambiental
      */
     @Override
-    public void actualizar(ParametroAmbiental parametros) {
+    public void actualizar(ModeloParametros parametros) {
         for (ComponenteEcosistema componente : componentes) {
             componente.actualizar(parametros);
         }
@@ -123,4 +123,4 @@ public class ZonaEcosistema implements ComponenteEcosistema {
             componente.reanudar();
         }
     }
-}  
+}

@@ -1,4 +1,4 @@
-package mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2.modelo;
 
 import java.util.Map;
 

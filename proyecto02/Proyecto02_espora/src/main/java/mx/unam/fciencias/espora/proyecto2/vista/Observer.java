@@ -1,4 +1,4 @@
-package mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2.vista;
 
 /**
  * La interfaz con el metodo para los observadores

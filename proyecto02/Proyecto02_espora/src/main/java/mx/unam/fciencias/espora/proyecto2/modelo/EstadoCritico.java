@@ -1,4 +1,4 @@
-package mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2.modelo;
 
 /**
  * Esta clase representa el estado critico de una poblacion,
@@ -16,7 +16,7 @@ public class EstadoCritico implements EstadoPoblacion{
      * Constructor de la clase
      * @param poblacion la poblacion del estado
      */
-    public EstadoRiesgo(PoblacionEspecie poblacion) {
+    public EstadoCritico(PoblacionEspecie poblacion) {
         this.poblacion = poblacion;
     }
     

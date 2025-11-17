@@ -1,4 +1,4 @@
-package mx.unam.fciencias.espora.proyecto2;
+package mx.unam.fciencias.espora.proyecto2.vista;
 
 /**
  * Clase que representa el panel de una especie
@@ -6,6 +6,9 @@ package mx.unam.fciencias.espora.proyecto2;
  * @author Equipo Espora
  * @version 1.0
  */
+
+import mx.unam.fciencias.espora.proyecto2.modelo.Ecosistema;
+import mx.unam.fciencias.espora.proyecto2.modelo.ZonaEcosistema;
 
 public class PanelEspecie implements Observer{
 
