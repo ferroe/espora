@@ -122,4 +122,13 @@ public class EstadoActiva implements EstadoCuenta {
     public void reabrirCuenta() {
         System.out.println("La cuenta ya se encuentra en estado Activa. No es necesario que sea reabierta.");
     }
+
+    /**
+     * Obtiene el nombre del estado actual de la cuenta.
+     * @return Nombre del estado actual.
+     */
+    @Override
+    public String getNombreEstado() {
+        return "Activa";
+    }
 }

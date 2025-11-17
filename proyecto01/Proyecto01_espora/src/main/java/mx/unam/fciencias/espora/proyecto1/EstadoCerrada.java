@@ -89,4 +89,13 @@ public class EstadoCerrada implements EstadoCuenta {
         System.out.println(descripcion);
         cuenta.asignarEstado(cuenta.getEstadoActiva());
     }
+
+    /**
+     * Obtiene el nombre del estado actual de la cuenta.
+     * @return Nombre del estado actual.
+     */
+    @Override
+    public String getNombreEstado() {
+        return "Cerrada";
+    }
 }

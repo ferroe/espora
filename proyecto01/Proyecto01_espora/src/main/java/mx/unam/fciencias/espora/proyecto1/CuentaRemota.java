@@ -56,4 +56,53 @@ public interface CuentaRemota extends Remote {
      * @throws RemoteException Si ocurre un error en la comunicación remota
      */
     double getSaldoGlobal(String idCliente, String nip) throws RemoteException;
+
+    /**
+     * Metodo para ejecutar el proceso mensual
+     * @param idCliente Representa el ID del cliente
+     * @param nip Representa el NIP del cliente
+     * @throws RemoteException Si ocurre un error en la comunicación remota
+     */
+    void ejecutarProcesoMensual(String idCliente, String nip) throws RemoteException;
+
+    /**
+     * Metodo para obtener el nombre del estado de una cuenta
+     * @param numeroCuenta Representa el número de cuenta
+     * @param nip Representa el NIP del cliente
+     * @return El nombre del estado de la cuenta
+     * @throws RemoteException Si ocurre un error en la comunicación remota
+     */
+    String getNombreEstado(String numeroCuenta, String nip) throws RemoteException;
+
+    /**
+     * Metodo para bloquear una cuenta
+     * @param numeroCuenta Representa el número de cuenta
+     * @param nip Representa el NIP del cliente
+     * @throws RemoteException Si ocurre un error en la comunicación remota
+     */
+    void bloquearCuenta(String numeroCuenta, String nip) throws RemoteException;
+
+    /**
+     * Metodo para desbloquear una cuenta
+     * @param numeroCuenta Representa el número de cuenta
+     * @param nip Representa el NIP del cliente
+     * @throws RemoteException Si ocurre un error en la comunicación remota
+     */
+    void desbloquearCuenta(String numeroCuenta, String nip) throws RemoteException;
+
+    /**
+     * Metodo para suspender una cuenta
+     * @param numeroCuenta Representa el número de cuenta
+     * @param nip Representa el NIP del cliente
+     * @throws RemoteException Si ocurre un error en la comunicación remota
+     */
+    void suspenderCuenta(String numeroCuenta, String nip) throws RemoteException;
+
+    /**
+     * Metodo para reabrir una cuenta
+     * @param numeroCuenta Representa el número de cuenta
+     * @param nip Representa el NIP del cliente
+     * @throws RemoteException Si ocurre un error en la comunicación remota
+     */
+    void reabrirCuenta(String numeroCuenta, String nip) throws RemoteException;
 }

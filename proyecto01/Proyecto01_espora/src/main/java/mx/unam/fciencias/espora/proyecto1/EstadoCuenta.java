@@ -52,4 +52,10 @@ public interface EstadoCuenta {
      * Permite que la cuenta pueda ser reabierta.
      */
     public void reabrirCuenta();
+
+    /**
+     * Obtiene el nombre del estado actual de la cuenta.
+     * @return Nombre del estado actual.
+     */
+    public String getNombreEstado();
 }

@@ -47,7 +47,7 @@ public class LectorTXT {
 
         try (BufferedReader br = new BufferedReader(new FileReader(CLIENTES_TXT))) {
             while ((linea = br.readLine()) != null) {
-                if (linea.trim().isEmpty())
+                if (linea.trim().isEmpty() || linea.startsWith("#"))
                     continue;
 
                 String[] datos = linea.split(",");
@@ -117,8 +117,10 @@ public class LectorTXT {
                 }
 
                 if (clientes.containsKey(idCliente)) {
+                    Cliente cliente = clientes.get(idCliente);
                     Cuenta base = new CuentaCliente(numCuenta, idCliente, tipo, saldo,
                             estado, antiguedad, sumaSaldos, estrategia);
+                    base.registrar(cliente);
                     cuentasMap.put(base.getNumCuenta(), base);
                 } else {
                     System.err.println("Error: La cuenta " + numCuenta + " pertenece a un cliente (" + idCliente

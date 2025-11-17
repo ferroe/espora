@@ -123,4 +123,10 @@ public interface Cuenta {
      * Avanza al siguiente mes, actualizando los contadores necesarios
      */
     public void avanzarMes();
+
+    /**
+     * Obtiene el nombre del estado de la cuenta
+     * @return Nombre del estado de la cuenta
+     */
+    public String getNombreEstado();
 }
