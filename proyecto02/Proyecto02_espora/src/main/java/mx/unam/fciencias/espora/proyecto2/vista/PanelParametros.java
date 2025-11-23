@@ -1,27 +1,25 @@
 package mx.unam.fciencias.espora.proyecto2.vista;
 
-import java.util.List;
-import mx.unam.fciencias.espora.proyecto2.modelo.Ecosistema;
+import mx.unam.fciencias.espora.proyecto2.modelo.EcosistemaInterfaz; // Interfaz
 import mx.unam.fciencias.espora.proyecto2.modelo.ModeloParametros;
-
-/**
- * Clase PanelParametros que implementa el Observer
- * que actualiza los parametros del ecosistema 
- * @author Equipo Espora
- * @version 1.0
- */
+import mx.unam.fciencias.espora.proyecto2.modelo.Observer;
 
 public class PanelParametros implements Observer {
 
-    private Ecosistema ecosistema;
+    private EcosistemaInterfaz ecosistema; // Solo lectura/interfaz
 
-    public PanelParametros(Ecosistema ecosistema) {
+    public PanelParametros(EcosistemaInterfaz ecosistema) {
         this.ecosistema = ecosistema;
+        // Nos registramos como observadores a través de la interfaz
         this.ecosistema.registrarObservador(this);
     }
 
     @Override
     public void actualizar() {
+        // Leemos los datos nuevos de manera segura
         ModeloParametros parametros = ecosistema.getModeloParametros();
+        
+        // Aquí iría tu lógica para actualizar los sliders o etiquetas de la UI
+        // System.out.println("PanelParametros actualizado: Contaminación = " + parametros.getNivelContaminacion());
     }
 }

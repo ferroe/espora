@@ -3,80 +3,52 @@ package mx.unam.fciencias.espora.proyecto2.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * La interfaz ComponenteEcosistema 
- * de nuestro ecosistema Xochimilco
- * 
- * @author Equipo Espora
- * @version 1.0
- */
-
 public class ZonaEcosistema implements ComponenteEcosistema {
 
     private String nombre;
     private List<ComponenteEcosistema> componentes;
+    private ModeloParametros parametrosLocales; 
 
-    /**
-     * Constructor de ZonaEcosistema
-     * @param nombre El nombre de la zona
-     */
     public ZonaEcosistema(String nombre) {
         this.nombre = nombre;
         this.componentes = new ArrayList<>();
+        this.parametrosLocales = new ModeloParametros();
     }
 
-    /**
-     * Agrega un componente al ecosistema
-     * @param componente El componente que se agrega
-     */
+    public ModeloParametros getParametros() {
+        return this.parametrosLocales;
+    }
+
     public void agregarComponente(ComponenteEcosistema componente) {
         componentes.add(componente);
     }
 
-    /**
-     * Remueve un componente del ecosistema
-     * @param componente El componente que se remueve
-     */
     public void removerComponente(ComponenteEcosistema componente) {
         componentes.remove(componente);
     }
     
-    /**
-     * Obtiene los componentes del ecosistema
-     * @return La lista de componentes del ecosistema
-     */
     public List<ComponenteEcosistema> getComponentes() {
         return this.componentes;
     }
 
-    /**
-     * El nombre del componente del ecosistema
-     */
     @Override
     public String getNombre() {
         return this.nombre;
     }
 
-    /**
-     * Actualiza el estado del componente del ecosistema
-     * @param parametro El parametro ambiental
-     */
     @Override
-    public void actualizar(ModeloParametros parametros) {
+    public void actualizar(ModeloParametros parametrosGlobalesIgnorados) {
         for (ComponenteEcosistema componente : componentes) {
-            componente.actualizar(parametros);
+            // Usamos los parámetros locales de esta zona
+            componente.actualizar(this.parametrosLocales); 
         }
     }
 
-    /**
-     * La salud del ecosistema
-     */
     @Override
     public double getSalud() {
         if (componentes.isEmpty()) {
             return 0.0;
         }
-
         double saludTotal = 0.0;
         for (ComponenteEcosistema componente : componentes) {
             saludTotal += componente.getSalud();
@@ -84,9 +56,6 @@ public class ZonaEcosistema implements ComponenteEcosistema {
         return saludTotal / componentes.size();
     }
 
-    /**
-     * El tamano del ecosistema
-     */
     @Override
     public int getTamanio() {
         int tamanioTotal = 0;
@@ -96,17 +65,36 @@ public class ZonaEcosistema implements ComponenteEcosistema {
         return tamanioTotal;
     }
 
-    /**
-     * El estado del ecosistema
-     */
     @Override
     public String getEstado() {
-        return "Zona";
+        if (componentes.isEmpty()) {
+            return "Sin Vida";
+        }
+        
+        boolean hayRiesgo = false;
+        
+        for (ComponenteEcosistema comp : componentes) {
+            String estadoHijo = comp.getEstado();
+            
+            // Prioridad 1: Crítico
+            if ("Crítico".equalsIgnoreCase(estadoHijo)) {
+                return "Crítico";
+            }
+            
+            // Prioridad 2: Detectar si hay riesgo
+            if ("En Riesgo".equalsIgnoreCase(estadoHijo)) {
+                hayRiesgo = true;
+            }
+        }
+        
+        // CORRECCIÓN: Usamos if-else en lugar de operador ternario (?)
+        if (hayRiesgo) {
+            return "En Riesgo";
+        } else {
+            return "Saludable";
+        }
     }
 
-    /**
-     * Pausa el ecosistema
-     */
     @Override
     public void pausa() {
         for (ComponenteEcosistema componente : componentes) {
@@ -114,9 +102,6 @@ public class ZonaEcosistema implements ComponenteEcosistema {
         }
     } 
 
-    /**
-     * Reanuda el ecosistema
-     */
     @Override
     public void reanudar() {    
         for (ComponenteEcosistema componente : componentes) {

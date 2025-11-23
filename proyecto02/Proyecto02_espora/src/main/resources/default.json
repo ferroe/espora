@@ -1,0 +1,71 @@
+{
+  "configuracionGlobal": {
+    "tasaContaminacionDiaria": 0.05,
+    "tasaReproduccionTilapia": 1.02,
+    "tasaCrecimientoLirio": 1.01,
+    "tasaAutolimpiezaAgua": 0.995,
+    "promediosClima": {
+      "precipitacion": [
+        11.0, 4.5, 10.0, 25.0, 55.0, 133.0, 
+        170.0, 160.0, 140.0, 50.0, 13.0, 8.0
+      ],
+      "temperatura": [
+        13.0, 14.5, 17.0, 19.0, 20.0, 19.5, 
+        18.5, 18.5, 18.0, 17.0, 15.0, 14.0
+      ],
+      "evaporacionBase": 0.1
+    }
+  },
+  "zonas": [
+    {
+      "nombre": "Zona Norte",
+      "poblaciones": [
+        {
+          "nombre": "Ajolote",
+          "poblacionInicial": 36,
+          "estadoInicial": "En Riesgo"
+        },
+        {
+          "nombre": "Rana Moctezuma",
+          "poblacionInicial": 10,
+          "estadoInicial": "Crítico"
+        }
+      ]
+    },
+    {
+      "nombre": "Zona Sur",
+      "poblaciones": [
+        {
+          "nombre": "Pato Mexicano",
+          "poblacionInicial": 50,
+          "estadoInicial": "En Riesgo"
+        }
+      ]
+    },
+    {
+      "nombre": "Zona Este",
+      "poblaciones": [
+        {
+          "nombre": "Ajolote",
+          "poblacionInicial": 15,
+          "estadoInicial": "Crítico"
+        }
+      ]
+    },
+    {
+      "nombre": "Zona Oeste",
+      "poblaciones": [
+        {
+          "nombre": "Pato Mexicano",
+          "poblacionInicial": 40,
+          "estadoInicial": "En Riesgo"
+        },
+        {
+          "nombre": "Rana Moctezuma",
+          "poblacionInicial": 5,
+          "estadoInicial": "Crítico"
+        }
+      ]
+    }
+  ]
+}

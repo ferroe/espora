@@ -2,37 +2,22 @@ package mx.unam.fciencias.espora.proyecto2.vista;
 
 import java.util.List;
 import mx.unam.fciencias.espora.proyecto2.modelo.ComponenteEcosistema;
-import mx.unam.fciencias.espora.proyecto2.modelo.Ecosistema;
+import mx.unam.fciencias.espora.proyecto2.modelo.EcosistemaInterfaz; // Interfaz
+import mx.unam.fciencias.espora.proyecto2.modelo.Observer;
 import mx.unam.fciencias.espora.proyecto2.modelo.ZonaEcosistema;
-
-/**
- * Clase SistemaAlertas que implementa el Observer
- * notifica al usuario dependiendo de la situacion del ecosistema
- * 
- * @author Equipo Espora
- * @version 1.0
- */
 
 public class SistemaAlertas implements Observer {
 
-    private Ecosistema ecosistema;
+    private EcosistemaInterfaz ecosistema;
 
-    /**
-     * Constructor del SistemaAlertas
-     * @param ecosistema el ecosistema
-     */
-    public SistemaAlertas(Ecosistema ecosistema) {
+    public SistemaAlertas(EcosistemaInterfaz ecosistema) {
         this.ecosistema = ecosistema;
         this.ecosistema.registrarObservador(this);
     }
 
-    /**
-     * Actualiza el estado del SistemaAlertas
-     */
     @Override
     public void actualizar() {
-        System.out.println("SistemaAlertas: NOTIFICADO - Buscando estados críticos...");
-        
+        // Lógica segura usando la interfaz
         ZonaEcosistema raiz = ecosistema.getXochimilcoRaiz();
         List<ComponenteEcosistema> zonas = raiz.getComponentes();
         
@@ -40,7 +25,7 @@ public class SistemaAlertas implements Observer {
             if (zona instanceof ZonaEcosistema) {
                 List<ComponenteEcosistema> poblaciones = ((ZonaEcosistema) zona).getComponentes();
                 for (ComponenteEcosistema pob : poblaciones) {
-                    if (pob.getEstado().equals("Crítico")) {                       
+                    if ("Crítico".equals(pob.getEstado())) {                       
                         mostrarAlerta("¡" + pob.getNombre() + " ha entrado en estado crítico!");
                     }
                 }
@@ -48,13 +33,8 @@ public class SistemaAlertas implements Observer {
         }
     }
 
-    /**
-     * Muestra una alerta con el mensaje proporcionado
-     * @param mensaje el mensaje de la alerta
-     */
     private void mostrarAlerta(String mensaje) {
-        System.out.println("ALERTA: " + mensaje);
+        System.out.println("[ALERTA DE SISTEMA]: " + mensaje);
+        // Aquí podrías mostrar un Dialog de JavaFX
     }
 }
-
-

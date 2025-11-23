@@ -2,79 +2,137 @@ package mx.unam.fciencias.espora.proyecto2.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
-import mx.unam.fciencias.espora.proyecto2.vista.Observer;
 
-/**
- * La clase Ecosistema que representa el ecosistema 
- * dentro de Xochimilco
- * 
- * @author Equipo Espora
- * @version 1.0
- */
-public class Ecosistema implements Sujeto {
+public class Ecosistema implements EcosistemaInterfaz { 
     
     private List<Observer> observadores;
     private ZonaEcosistema xochimilcoRaiz;
-    private ModeloParametros modeloParametros;
+    // Eliminamos: private ModeloParametros modeloParametros; (Ya no es global)
     
-    /**
-     * Constructor de Ecosistema
-     */
+    private int tickActual;
+
     public Ecosistema() {
         this.observadores = new ArrayList<>();
         this.xochimilcoRaiz = new ZonaEcosistema("Xochimilco");
-        this.modeloParametros = new ModeloParametros();
+        this.tickActual = 0;
     }
 
-    /**
-     * Simula el paso del tiempo en el ecosistema
-     */
-    public void simularPasoDelTiempo() {
-        this.xochimilcoRaiz.actualizar(this.modeloParametros);
-        this.notificarObservadores();
+    // ... (Implementación de Sujeto: registrar, remover, notificar igual) ...
+    @Override
+    public void registrarObservador(Observer o) { 
+        observadores.add(o); 
+    }
+    @Override
+    public void removerObservador(Observer o) { 
+        observadores.remove(o); 
+    }
+    @Override
+    public void notificarObservadores() {
+        for (Observer obs : observadores) { 
+            obs.actualizar(); 
+        }
     }
 
-    /**
-     * Obtiene la zona raiz del ecosistema
-     * @return La zona raiz del ecosistema
-     */
+    @Override
     public ZonaEcosistema getXochimilcoRaiz() {
         return this.xochimilcoRaiz;
     }
 
-    /**
-     * Obtiene el modelo de parametros del ecosistema
-     * @return El modelo de parametros del ecosistema
-     */
+    @Override
     public ModeloParametros getModeloParametros() {
-        return this.modeloParametros;
+        // Como ya no hay global, podemos retornar null o 
+        // mejor, retornar los de la primera zona para evitar errores en vistas antiguas
+        // Pero lo ideal es que la Vista pida los parámetros DE LA ZONA.
+        return null; 
     }
 
-    /**
-     * Registra un observador en el ecosistema
-     * @param o El observador a registrar
-     */
     @Override
-    public void registrarObservador(Observer o) {
-        this.observadores.add(o);
-    }
+    public void simularPasoDelTiempo() {
+        tickActual++;
+        int mes = (tickActual / 30) % 12;
 
-    /**
-     * Elimina un observador del ecosistema
-     * @param o El observador a eliminar
-     */
-    @Override
-    public void removerObservador(Observer o) {
-        this.observadores.remove(o);
-    }
-
-    /**
-     *  Notifica a los observadores del ecosistema
-     */
-    @Override
-    public void notificarObservadores() {
-        for (Observer obs: this.observadores) {
-            obs.actualizar();
+        // Actualizamos el mes en CADA ZONA
+        for (ComponenteEcosistema comp : xochimilcoRaiz.getComponentes()) {
+            if (comp instanceof ZonaEcosistema) {
+                ZonaEcosistema zona = (ZonaEcosistema) comp;
+                zona.getParametros().setMesActual(mes);
+            }
         }
-    } 
+
+        // Actualizamos el árbol (pasamos null porque cada zona usará el suyo)
+        this.xochimilcoRaiz.actualizar(null);
+        
+        notificarObservadores();
+    }
+
+    @Override
+    public ZonaEcosistema buscarZona(String nombre) {
+        for (ComponenteEcosistema comp : xochimilcoRaiz.getComponentes()) {
+            if (comp.getNombre().equals(nombre) && comp instanceof ZonaEcosistema) {
+                return (ZonaEcosistema) comp;
+            }
+        }
+        return null;
+    }
+
+    // --- ACCIONES LOCALES ---
+
+    @Override
+    public void tirarBasura(String nombreZona) {
+        ZonaEcosistema zona = buscarZona(nombreZona);
+        if (zona != null) {
+            System.out.println("Modelo: Tirando basura en " + nombreZona);
+            zona.getParametros().aplicarContaminacion(0.10);
+            notificarObservadores();
+        }
+    }
+
+    @Override
+    public void limpiarZona(String nombreZona) {
+        ZonaEcosistema zona = buscarZona(nombreZona);
+        if (zona != null) {
+            System.out.println("Modelo: Limpiando " + nombreZona);
+            zona.getParametros().aplicarLimpieza(0.15);
+            notificarObservadores();
+        }
+    }
+
+    @Override
+    public void introducirInvasoras(String nombreZona) {
+        ZonaEcosistema zona = buscarZona(nombreZona);
+        if (zona != null) {
+            double actual = zona.getParametros().getNivelEspeciesInvasoras();
+            zona.getParametros().setNivelEspeciesInvasoras(actual + 0.10);
+            notificarObservadores();
+        }
+    }
+
+    @Override
+    public void restaurarFlora(String nombreZona) {
+        ZonaEcosistema zona = buscarZona(nombreZona);
+        if (zona != null) {
+            zona.getParametros().aplicarLimpieza(0.05);
+            double actual = zona.getParametros().getNivelEspeciesInvasoras();
+            double nuevo = actual - 0.05;
+            if (nuevo < 0) nuevo = 0;
+            zona.getParametros().setNivelEspeciesInvasoras(nuevo);
+            notificarObservadores();
+        }
+    }
+
+    @Override
+    public void repoblarEspecie(String nombreZona, String nombreEspecieParcial) {
+        ZonaEcosistema zona = buscarZona(nombreZona);
+        if (zona != null) {
+            for (ComponenteEcosistema comp : zona.getComponentes()) {
+                if (comp instanceof PoblacionEspecie) {
+                    PoblacionEspecie pob = (PoblacionEspecie) comp;
+                    if (pob.getNombre().contains(nombreEspecieParcial)) {
+                        pob.setTamanio(pob.getTamanio() + 20);
+                    }
+                }
+            }
+            notificarObservadores();
+        }
+    }
 }

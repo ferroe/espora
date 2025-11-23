@@ -1,0 +1,106 @@
+.root {
+    -fx-background-color: #f0f9f4; /* Fondo verde muy suave */
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+/* --- Encabezado --- */
+.header-titulo {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a3c34;
+}
+
+.header-subtitulo {
+    -fx-font-size: 16px;
+    -fx-text-fill: #557c75;
+}
+
+/* --- Tarjetas de Zona --- */
+.tarjeta-zona {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 4);
+    -fx-padding: 30; /* Más relleno interno (padding) */
+    
+    /* CAMBIO CLAVE: Hacemos las tarjetas más grandes por defecto */
+    -fx-min-width: 400;  
+    -fx-pref-width: 500; /* Tamaño ideal */
+    -fx-min-height: 200;
+    
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+}
+
+.tarjeta-zona:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(46, 204, 113, 0.4), 15, 0, 0, 4);
+    -fx-translate-y: -2; /* Pequeña animación hacia arriba */
+}
+
+/* Título dentro de la tarjeta */
+.zona-titulo {
+    -fx-font-size: 22px; /* Antes era 18 */
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Etiquetas de datos (Población, Especies) */
+.zona-dato-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.zona-dato-valor {
+    -fx-font-size: 16px; /* Antes era 14 */
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Link falso "Click para ver detalles" */
+.zona-link {
+    -fx-text-fill: #3498db;
+    -fx-font-size: 13px;
+    -fx-underline: false;
+}
+
+/* --- Badges de Estado (Esquina superior) --- */
+.badge-base {
+    -fx-background-radius: 6;
+    -fx-padding: 4 10 4 10;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.badge-saludable {
+    -fx-background-color: #d1f2eb;
+    -fx-text-fill: #27ae60;
+}
+
+.badge-riesgo {
+    -fx-background-color: #fcf3cf;
+    -fx-text-fill: #f39c12;
+}
+
+.badge-critico {
+    -fx-background-color: #fadbd8;
+    -fx-text-fill: #c0392b;
+}
+
+/* --- Barra de Progreso Simulada --- */
+.barra-fondo {
+    -fx-background-color: #ecf0f1;
+    -fx-background-radius: 4;
+}
+.barra-progreso-saludable {
+    -fx-background-color: #2ecc71;
+    -fx-background-radius: 4;
+}
+.barra-progreso-riesgo {
+    -fx-background-color: #f1c40f;
+    -fx-background-radius: 4;
+}
+.barra-progreso-critico {
+    -fx-background-color: #e74c3c;
+    -fx-background-radius: 4;
+}

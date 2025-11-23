@@ -1,7 +1,5 @@
 package mx.unam.fciencias.espora.proyecto2.modelo;
 
-import mx.unam.fciencias.espora.proyecto2.vista.Observer;
-
 /**
  * Es la interfaz que define los metodos del sujeto
  * del Observer

@@ -1,72 +1,87 @@
 package mx.unam.fciencias.espora.proyecto2.modelo;
 
-/**
- * La clase ModeloParametros que maneja los parametros 
- * ambientales dentro del ecosistema
- * @author Equipo Espora
- * @version 1.0
- */
-
 public class ModeloParametros {
 
+    private int mesActual;
     private double nivelContaminacion;
     private double nivelEspeciesInvasoras;
+    
+    private double[] promediosPrecipitacion; 
+    private double[] promediosTemperatura;
+    private double evaporacionBase;
 
-    /**
-     * Constructor de ModeloParametros
-     */
     public ModeloParametros() {
-        this.nivelContaminacion = 0.1;
-        this.nivelEspeciesInvasoras = 0.1;
+        this.mesActual = 0;
+        this.nivelContaminacion = 0.0;
+        this.nivelEspeciesInvasoras = 0.0;
+        this.promediosPrecipitacion = new double[12];
+        this.promediosTemperatura = new double[12];
     }
 
-    /**
-     * Obtiene la calidad del agua
-     * @return La calidad del agua
-     */
-    public double getCalidadAgua() {
-        double calidadAgua = 100.0 - (this.nivelContaminacion * 1.5);
-        return calidadAgua;
+    // --- MÉTODOS DE ACCIÓN ---
+
+    public void aplicarLimpieza(double cantidad) {
+        double nuevoNivel = this.nivelContaminacion - cantidad;
+        // Reemplazo de operador ternario por if-else
+        if (nuevoNivel < 0.0) {
+            this.nivelContaminacion = 0.0;
+        } else {
+            this.nivelContaminacion = nuevoNivel;
+        }
+        System.out.println("Limpieza aplicada. Contaminación local: " + this.nivelContaminacion);
     }
 
-    /**
-     * Obtiene el nivel de agua
-     * @return El nivel de agua
-     */
+    public void aplicarContaminacion(double cantidad) {
+        double nuevoNivel = this.nivelContaminacion + cantidad;
+        // Reemplazo de operador ternario (Math.min es aceptable, pero lo hago explícito)
+        if (nuevoNivel > 1.0) {
+            this.nivelContaminacion = 1.0;
+        } else {
+            this.nivelContaminacion = nuevoNivel;
+        }
+    }
+
+    // --- Setters y Getters ---
+
+    public void setMesActual(int mes) {
+        // Validación sin Math.max/min para ser explícitos con if-else
+        if (mes < 0) {
+            this.mesActual = 0;
+        } else if (mes > 11) {
+            this.mesActual = 11;
+        } else {
+            this.mesActual = mes;
+        }
+    }
+
+    public void setPromediosClima(double[] precipitacion, double[] temperatura, double evapBase) {
+        this.promediosPrecipitacion = precipitacion;
+        this.promediosTemperatura = temperatura;
+        this.evaporacionBase = evapBase;
+    }
+
+    public void setNivelContaminacion(double v) { this.nivelContaminacion = v; }
+    public void setNivelEspeciesInvasoras(double v) { this.nivelEspeciesInvasoras = v; }
+
+    public double getNivelContaminacion() { return nivelContaminacion; }
+    public double getNivelEspeciesInvasoras() { return nivelEspeciesInvasoras; }
+
     public double getNivelAgua() {
-        double nivelAgua = 100.0 - (this.nivelContaminacion * 1.5);
-        return nivelAgua;
+        double lluvia = 0.0;
+        if (promediosPrecipitacion != null && mesActual < promediosPrecipitacion.length) {
+            lluvia = promediosPrecipitacion[mesActual];
+        }
+        return 50.0 + (lluvia * 0.15) - (evaporacionBase * 10);
     }
 
-    /**
-     * Obtiene el nivel de contaminación
-     * @return El nivel de contaminación
-     */
-    public double getNivelContaminacion() {
-        return this.nivelContaminacion;
+    public double getCalidadAgua() {
+        double calidad = 100.0 - (nivelContaminacion * 100) - (nivelEspeciesInvasoras * 50);
+        if (calidad < 0) {
+            return 0.0;
+        }
+        if (calidad > 100) {
+            return 100.0;
+        }
+        return calidad;
     }
-
-    /**
-     * Obtiene el nivel de especies invasoras
-     * @return El nivel de especies invasoras
-     */
-    public double getNivelEspeciesInvasoras() {
-        return this.nivelEspeciesInvasoras;
-    }
-
-    /**
-     * El nivel de contaminacion
-     * @param nivelContaminacion El nivel de contaminacion
-     */
-    public void setNivelContaminacion(double nivelContaminacion) {
-        this.nivelContaminacion = nivelContaminacion;
-    }
-
-    /**
-     * El nivel de especies invasoras
-     * @param nivelEspeciesInvasoras El nivel de especies invasoras
-     */
-    public void setNivelEspeciesInvasoras(double nivelEspeciesInvasoras) {
-        this.nivelEspeciesInvasoras = nivelEspeciesInvasoras;
-    }    
 }

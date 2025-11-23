@@ -1,15 +1,15 @@
 package mx.unam.fciencias.espora.proyecto2.controlador;
 
 import mx.unam.fciencias.espora.proyecto2.vista.XochilotitoUI;
-import mx.unam.fciencias.espora.proyecto2.modelo.Ecosistema;
+import mx.unam.fciencias.espora.proyecto2.modelo.EcosistemaInterfaz;
 
-public class SimuladorControlador {
+public class SimuladorControlador implements SimuladorControladorInterfaz {
 
-    private Ecosistema modelo;
+    private EcosistemaInterfaz modelo;
     private XochilotitoUI vistaPrincipal;
 
     // El Controlador es "inyectado" con el Modelo y la Vista principal
-    public SimuladorControlador(Ecosistema modelo, XochilotitoUI vistaPrincipal) {
+    public SimuladorControlador(EcosistemaInterfaz modelo, XochilotitoUI vistaPrincipal) {
         this.modelo = modelo;
         this.vistaPrincipal = vistaPrincipal;
     }
@@ -40,8 +40,41 @@ public class SimuladorControlador {
      */
     public void manejarAccionRestaurarFlora(String nombreZona) {
         System.out.println("Acción: Restaurar flora en " + nombreZona);
-        // 1. Llama al Modelo para que ejecute la lógica
-        // modelo.restaurarFlora(nombreZona); 
-        // 2. El modelo se actualiza y notifica a los Observadores (la Vista)
+        
+        // Aquí llamarías al método del modelo en el futuro:
+        // modelo.restaurarFlora(nombreZona);
+        
+        // Por ahora, para probar que el Observer funciona, forzamos un tick:
+        modelo.simularPasoDelTiempo();
+    }
+
+    @Override
+    public void limpiarZona(String nombreZona) {
+        modelo.limpiarZona(nombreZona);
+        modelo.simularPasoDelTiempo();
+    }
+
+    @Override
+    public void repoblarAjolotes(String nombreZona) {
+        modelo.repoblarEspecie(nombreZona, "Ajolote");
+        modelo.simularPasoDelTiempo();
+    }
+
+    @Override
+    public void restaurarFlora(String nombreZona) {
+        modelo.restaurarFlora(nombreZona);
+        modelo.simularPasoDelTiempo();
+    }
+
+    @Override
+    public void tirarBasura(String nombreZona) {
+        modelo.tirarBasura(nombreZona);
+        modelo.simularPasoDelTiempo();
+    }
+
+    @Override
+    public void introducirTilapias(String nombreZona) {
+        modelo.introducirInvasoras(nombreZona);
+        modelo.simularPasoDelTiempo();
     }
 }

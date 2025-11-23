@@ -1,86 +1,169 @@
-// Paquete: mx.unam.fciencias.espora.proyecto2.vista
 package mx.unam.fciencias.espora.proyecto2.vista;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import mx.unam.fciencias.espora.proyecto2.controlador.SimuladorControlador;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.*;
+import javafx.scene.shape.Rectangle;
+import mx.unam.fciencias.espora.proyecto2.controlador.SimuladorControladorInterfaz;
+import mx.unam.fciencias.espora.proyecto2.modelo.ComponenteEcosistema;
+import mx.unam.fciencias.espora.proyecto2.modelo.EcosistemaInterfaz;
+import mx.unam.fciencias.espora.proyecto2.modelo.ZonaEcosistema;
+import java.util.List;
 
-public class TableroZonas extends GridPane {
+public class TableroZonas extends BorderPane {
 
-    private SimuladorControlador controlador;
+    private SimuladorControladorInterfaz controlador;
+    private EcosistemaInterfaz ecosistema;
+    private GridPane gridZonas;
 
-    // Cambia el constructor
-    public TableroZonas(SimuladorControlador controlador) {
-        this.controlador = controlador; // Guarda la referencia
-        configurarLayout();
-        cargarZonas();
+    public TableroZonas(SimuladorControladorInterfaz controlador, EcosistemaInterfaz ecosistema) {
+        this.controlador = controlador;
+        this.ecosistema = ecosistema;
+        
+        // Cargar CSS
+        this.getStylesheets().add(getClass().getResource("/estilos/tablero.css").toExternalForm());
+
+        inicializarUI();
+        cargarZonasDelModelo();
     }
 
-    private void configurarLayout() {
-        // Configura el GridPane para que sea un 2x2
-        this.setPadding(new Insets(10)); // Espaciado interior
-        this.setHgap(10); // Espaciado horizontal entre celdas
-        this.setVgap(10); // Espaciado vertical entre celdas
-        this.setAlignment(Pos.CENTER);
+    private void inicializarUI() {
+        // --- ENCABEZADO ---
+        VBox header = new VBox(5);
+        header.setPadding(new Insets(30, 40, 20, 40));
+        
+        Label titulo = new Label("Selecciona una Zona de Xochimilco");
+        titulo.getStyleClass().add("header-titulo");
+        
+        Label subtitulo = new Label("Elige una zona para monitorear su ecosistema y gestionar las especies nativas");
+        subtitulo.getStyleClass().add("header-subtitulo");
+        
+        header.getChildren().addAll(titulo, subtitulo);
+        this.setTop(header);
 
-        // Aquí podrías definir las 4 celdas del 2x2
-        // (Aunque se definen solas al añadir los elementos)
+        // --- CONTENIDO CENTRAL (GRID) ---
+        gridZonas = new GridPane();
+        gridZonas.setHgap(50);
+        gridZonas.setVgap(50);
+        gridZonas.setPadding(new Insets(40)); // Más margen alrededor
+        gridZonas.setAlignment(Pos.CENTER);
+
+        // Scroll por si hay muchas zonas en el futuro
+        ScrollPane scroll = new ScrollPane(gridZonas);
+        scroll.setFitToWidth(true);
+        scroll.setFitToHeight(true); // ¡Importante para centrar verticalmente!
+        scroll.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
+        
+        this.setCenter(scroll);
     }
 
-    private void cargarZonas() {
-        // ¡AQUÍ ESTÁ LA MAGIA!
-        // 1. Leemos el Modelo (nuestro Composite)
-        // Asumimos que Ecosistema tiene un método para obtener las zonas
-        
-        // Supongamos que tu `Ecosistema` tiene una raíz `Zona` y esa tiene 4 hijos (las zonas)
-        // O si `Ecosistema` mismo tiene las 4 zonas, ajústalo.
-        // Vamos a simular que tienes 4 zonas hard-codeadas por ahora:
-        
-        // TODO: Reemplaza esto con tu lógica real del modelo
-        // Por ejemplo: List<ZonaEcosistema> zonas = ecosistema.getXochimilcoRaiz().getHijos();
-        // int i = 0; for (ZonaEcosistema zona : zonas) { ... }
-        
-        // --- Simulación de 4 Zonas ---
-        VBox zonaNorte = crearPanelZona("Zona Norte");
-        VBox zonaSur = crearPanelZona("Zona Sur");
-        VBox zonaEste = crearPanelZona("Zona Este");
-        VBox zonaOeste = crearPanelZona("Zona Oeste");
-        
-        // 2. Colocamos las Vistas (JavaFX) en el GridPane
-        this.add(zonaNorte, 0, 0); // Columna 0, Fila 0
-        this.add(zonaSur, 1, 0);   // Columna 1, Fila 0
-        this.add(zonaEste, 0, 1);  // Columna 0, Fila 1
-        this.add(zonaOeste, 1, 1); // Columna 1, Fila 1
+    private void cargarZonasDelModelo() {
+        List<ComponenteEcosistema> zonas = ecosistema.getXochimilcoRaiz().getComponentes();
+        int col = 0;
+        int row = 0;
+
+        for (ComponenteEcosistema comp : zonas) {
+            if (comp instanceof ZonaEcosistema) {
+                ZonaEcosistema zona = (ZonaEcosistema) comp;
+                VBox tarjeta = crearTarjetaZona(zona);
+                
+                gridZonas.add(tarjeta, col, row);
+                
+                col++;
+                if (col == 2) { // 2 columnas como en tu imagen
+                    col = 0;
+                    row++;
+                }
+            }
+        }
     }
 
-    /**
-     * Método de ayuda para crear el panel de una zona.
-     * Eventualmente, esto debería ser su propia clase (ej. PanelZona.java)
-     * y debería recibir un objeto `ZonaEcosistema` (del Modelo).
-     */
-    private VBox crearPanelZona(String nombreZona) {
-        VBox panel = new VBox();
-        panel.setPadding(new Insets(15));
-        panel.setSpacing(10);
-        panel.setAlignment(Pos.CENTER);
-        panel.setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-background-color: #f4f4f4;");
+    private VBox crearTarjetaZona(ZonaEcosistema zona) {
+        VBox tarjeta = new VBox(15);
+        tarjeta.getStyleClass().add("tarjeta-zona");
 
-        Label lblNombre = new Label(nombreZona);
-        lblNombre.setFont(new Font("Arial", 20));
+        // 1. Encabezado de Tarjeta (Icono + Nombre + Badge)
+        HBox encabezado = new HBox(10);
+        encabezado.setAlignment(Pos.CENTER_LEFT);
         
-        Label lblEstado = new Label("Estado: Saludable ✅"); // Placeholder
+        Label icono = new Label("📍"); // O usa un ImageView
+        icono.setStyle("-fx-font-size: 20px;");
+        
+        Label lblNombre = new Label(zona.getNombre());
+        lblNombre.getStyleClass().add("zona-titulo");
+        
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        
+        Label lblBadge = new Label(zona.getEstado());
+        lblBadge.getStyleClass().addAll("badge-base", obtenerClaseBadge(zona.getEstado()));
+        
+        encabezado.getChildren().addAll(icono, lblNombre, spacer, lblBadge);
 
-        panel.getChildren().addAll(lblNombre, lblEstado);
+        // 2. Datos (Población Total)
+        HBox datosBox = new HBox();
+        datosBox.setAlignment(Pos.CENTER_LEFT);
+        Label lblTituloPob = new Label("Población Total");
+        lblTituloPob.getStyleClass().add("zona-dato-label");
+        Region spacer2 = new Region();
+        HBox.setHgrow(spacer2, Priority.ALWAYS);
+        Label lblValorPob = new Label(String.valueOf(zona.getTamanio())); // Número real
+        lblValorPob.getStyleClass().add("zona-dato-valor");
+        datosBox.getChildren().addAll(lblTituloPob, spacer2, lblValorPob);
 
-        // Aquí agregamos la navegación a la "Pantalla 2"
-        panel.setOnMouseClicked(event -> {
-            controlador.solicitarNavegacionADetalle(nombreZona);
-        });
+        // 3. Barra de Progreso (Decorativa basada en estado)
+        StackPane barraProgreso = new StackPane();
+        barraProgreso.setAlignment(Pos.CENTER_LEFT);
+        
+        Rectangle fondoBarra = new Rectangle(300, 6); // Ancho fijo relativo
+        fondoBarra.getStyleClass().add("barra-fondo");
+        fondoBarra.widthProperty().bind(tarjeta.widthProperty().subtract(50)); // Dinámico
+        
+        Rectangle rellenoBarra = new Rectangle();
+        rellenoBarra.heightProperty().bind(fondoBarra.heightProperty());
+        rellenoBarra.widthProperty().bind(fondoBarra.widthProperty().multiply(calcularPorcentajeSalud(zona))); 
+        rellenoBarra.getStyleClass().add(obtenerClaseBarra(zona.getEstado()));
+        
+        barraProgreso.getChildren().addAll(fondoBarra, rellenoBarra);
 
-        return panel;
+        // 4. Footer (Link)
+        Label lblLink = new Label("Click para ver detalles →");
+        lblLink.getStyleClass().add("zona-link");
+        HBox footer = new HBox(lblLink);
+        footer.setAlignment(Pos.CENTER);
+        footer.setPadding(new Insets(10, 0, 0, 0));
+
+        // Armar tarjeta
+        tarjeta.getChildren().addAll(encabezado, datosBox, barraProgreso, footer);
+
+        // Evento Click
+        tarjeta.setOnMouseClicked(e -> controlador.solicitarNavegacionADetalle(zona.getNombre()));
+
+        return tarjeta;
+    }
+
+    // --- Helpers de Estilo ---
+
+    private String obtenerClaseBadge(String estado) {
+        if ("Crítico".equalsIgnoreCase(estado)) return "badge-critico";
+        if ("En Riesgo".equalsIgnoreCase(estado)) return "badge-riesgo";
+        return "badge-saludable";
+    }
+
+    private String obtenerClaseBarra(String estado) {
+        if ("Crítico".equalsIgnoreCase(estado)) return "barra-progreso-critico";
+        if ("En Riesgo".equalsIgnoreCase(estado)) return "barra-progreso-riesgo";
+        return "barra-progreso-saludable";
+    }
+
+    private double calcularPorcentajeSalud(ZonaEcosistema zona) {
+        // Lógica simple para la barra: Saludable=100%, Riesgo=60%, Crítico=30%
+        // O podrías usar zona.getSalud() si devuelve un double entre 0 y 1.
+        String estado = zona.getEstado();
+        if ("Crítico".equalsIgnoreCase(estado)) return 0.3;
+        if ("En Riesgo".equalsIgnoreCase(estado)) return 0.6;
+        return 1.0;
     }
 }
