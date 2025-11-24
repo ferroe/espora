@@ -1,19 +1,20 @@
 package mx.unam.fciencias.espora.proyecto2.modelo;
 
 /**
- * Esta clase es la interfaz de los estados de la poblacion, 
- * con sus metodos principales.
- * 
- * @author Equipo Espora
- * @version 1.0
+ *
+ * Interfaz que define el comportamiento de los distintos estados de una poblacion.
+ *
  */
-
 public interface EstadoPoblacion {
 
     /**
-     * Metodos de la interfaz EstadoPoblacion
+     * Ejecuta la logica de reproduccion propia del estado.
      */
     void reproducir();
+
+    /**
+     * Ejecuta la logica de mortalidad natural propia del estado.
+     */
     void morirNatural();
     
 }

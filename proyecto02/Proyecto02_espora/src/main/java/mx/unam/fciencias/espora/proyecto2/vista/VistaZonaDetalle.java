@@ -9,6 +9,12 @@ import mx.unam.fciencias.espora.proyecto2.controlador.SimuladorControladorInterf
 import mx.unam.fciencias.espora.proyecto2.modelo.EcosistemaInterfaz;
 import mx.unam.fciencias.espora.proyecto2.modelo.ZonaEcosistema;
 
+/**
+ *
+ * Vista que muestra el detalle de una zona: lista de especies y
+ * panel de control con acciones sobre la zona.
+ *
+ */
 public class VistaZonaDetalle extends BorderPane {
 
     private SimuladorControladorInterfaz controlador;
@@ -20,16 +26,14 @@ public class VistaZonaDetalle extends BorderPane {
         this.controlador = controlador;
         this.ecosistema = ecosistema;
         
-        // Cargar CSS
         this.getStylesheets().add(getClass().getResource("/estilos/detalle.css").toExternalForm());
 
         inicializarComponentes();
     }
 
     private void inicializarComponentes() {
-        // --- TOP (Header) ---
         VBox topBox = new VBox(15);
-        topBox.setPadding(new Insets(20, 30, 10, 30)); // Márgenes
+        topBox.setPadding(new Insets(20, 30, 10, 30));
         
         Button btnVolver = new Button("← Volver");
         btnVolver.getStyleClass().add("boton-volver");
@@ -41,11 +45,9 @@ public class VistaZonaDetalle extends BorderPane {
         topBox.getChildren().addAll(btnVolver, lblNombreZona);
         this.setTop(topBox);
 
-        // --- CENTER (Especies) ---
         panelEspecies = new PanelEspecie(ecosistema);
         this.setCenter(panelEspecies);
 
-        // --- RIGHT (Panel de Control) ---
         crearPanelLateral();
     }
 
@@ -54,13 +56,11 @@ public class VistaZonaDetalle extends BorderPane {
         panelLateral.getStyleClass().add("panel-lateral");
         panelLateral.setPrefWidth(300);
         
-        // Margen externo para que no pegue con el borde
         BorderPane.setMargin(panelLateral, new Insets(10, 30, 30, 10));
 
         Label lblTitulo = new Label("Panel de Control");
         lblTitulo.getStyleClass().add("subtitulo-seccion");
 
-        // Botones con iconos (simulados con emoji) y clases CSS
         Button btnBasura = crearBoton("🗑️ Tirar Basura", "btn-rojo");
         btnBasura.setOnAction(e -> controlador.tirarBasura(lblNombreZona.getText()));
 
@@ -78,8 +78,8 @@ public class VistaZonaDetalle extends BorderPane {
 
         panelLateral.getChildren().addAll(
             lblTitulo, 
-            btnBasura, btnTilapias, // Malos
-            btnLimpiar, btnRepoblar, btnFlora // Buenos
+            btnBasura, btnTilapias,
+            btnLimpiar, btnRepoblar, btnFlora
         );
         
         this.setRight(panelLateral);
@@ -92,6 +92,10 @@ public class VistaZonaDetalle extends BorderPane {
         return btn;
     }
 
+    /**
+     * Carga los datos de la zona en la vista (nombre y especies).
+     * @param nombreZona Nombre de la zona a cargar.
+     */
     public void cargarDatosZona(String nombreZona) {
         this.lblNombreZona.setText(nombreZona);
         ZonaEcosistema zona = ecosistema.buscarZona(nombreZona);

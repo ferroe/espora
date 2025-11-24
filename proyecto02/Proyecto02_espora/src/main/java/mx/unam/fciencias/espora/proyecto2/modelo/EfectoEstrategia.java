@@ -3,16 +3,16 @@ package mx.unam.fciencias.espora.proyecto2.modelo;
 import java.util.Map;
 
 /**
- * Esta interfaz es la estrategia de efecto
- * 
- * @author Equipo Espora
- * @version 1.0
+ *
+ * Interfaz para estrategias que calculan el efecto ambiental sobre una poblacion.
+ *
  */
 public interface EfectoEstrategia {
 
     /**
-     * Calcula el efecto de la estrategia en la poblacion
-     * @param parametros Los parametros ambientales que afectan a la poblacion
+     * Calcula y aplica el efecto de la estrategia sobre la poblacion.
+     * @param poblacion Poblacion objetivo.
+     * @param parametros Mapa con parametros ambientales relevantes.
      */
     public void calcularEfecto(PoblacionEspecie poblacion, Map<String, Double> parametros);
     

@@ -1,27 +1,24 @@
 package mx.unam.fciencias.espora.proyecto2.modelo;
 
 /**
- * Esta clase representa el estado saludable de una poblacion,
- * implementando los metodos de la interfaz EstadoPoblacion.
- * 
- * @author Equipo Espora
- * @version 1.0
+ *
+ * Estado que representa condiciones favorables para la poblacion.
+ *
  */
-
 public class EstadoSaludable implements EstadoPoblacion{
 
     private PoblacionEspecie poblacion;
 
     /**
-     * Constructor de la clase
-     * @param poblacion la poblacion del estado
+     * Construye el estado saludable asociado a una poblacion.
+     * @param poblacion Poblacion a la que pertenece.
      */
     public EstadoSaludable(PoblacionEspecie poblacion) {
         this.poblacion = poblacion;
     }
     
     /**
-     * Metodos implementados de la interfaz EstadoPoblacion
+     * Reproduccion en condiciones saludables.
      */
     @Override
     public void reproducir() {
@@ -32,7 +29,7 @@ public class EstadoSaludable implements EstadoPoblacion{
     }
 
     /**
-     * Metodo de morir de forma natural
+     * Mortalidad natural en condiciones saludables.
      */
     @Override
     public void morirNatural() {

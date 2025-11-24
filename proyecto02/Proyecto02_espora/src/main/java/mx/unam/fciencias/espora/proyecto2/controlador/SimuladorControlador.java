@@ -3,48 +3,50 @@ package mx.unam.fciencias.espora.proyecto2.controlador;
 import mx.unam.fciencias.espora.proyecto2.vista.XochilotitoUI;
 import mx.unam.fciencias.espora.proyecto2.modelo.EcosistemaInterfaz;
 
+/**
+ *
+ * Implementacion basica del controlador del simulador. Se encarga de
+ * coordinar la navegacion entre vistas y delegar acciones del usuario
+ * hacia el modelo del ecosistema.
+ *
+ */
 public class SimuladorControlador implements SimuladorControladorInterfaz {
 
     private EcosistemaInterfaz modelo;
     private XochilotitoUI vistaPrincipal;
 
-    // El Controlador es "inyectado" con el Modelo y la Vista principal
+    /**
+     * Crea una instancia del controlador con el modelo y la vista principal.
+     * @param modelo Modelo del ecosistema utilizado por el simulador.
+     * @param vistaPrincipal Vista principal que controla la navegacion.
+     */
     public SimuladorControlador(EcosistemaInterfaz modelo, XochilotitoUI vistaPrincipal) {
         this.modelo = modelo;
         this.vistaPrincipal = vistaPrincipal;
     }
 
-    // --- MÉTODOS DE NAVEGACIÓN ---
-
     /**
-     * La Vista (ej. TableroZonas) llama a esto cuando se hace clic en una zona.
+     * Solicita la navegacion a la vista de detalle para la zona indicada.
+     * @param nombreZona Nombre de la zona seleccionada.
      */
     public void solicitarNavegacionADetalle(String nombreZona) {
-        // Aquí puedes agregar lógica, ej. cargar datos en el modelo
-        
-        // 1. Llama a la Vista Principal para que cambie la escena
         vistaPrincipal.navegarAVistaDetalle(nombreZona);
     }
 
     /**
-     * La Vista (ej. VistaZonaDetalle) llama a esto para volver.
+     * Solicita la navegacion de regreso al tablero principal.
      */
     public void solicitarNavegacionATablero() {
         vistaPrincipal.navegarATablero();
     }
     
-    // --- MÉTODOS DE ACCIÓN DEL USUARIO ---
-
     /**
-     * La Vista (ej. VistaZonaDetalle) llama a esto cuando se presiona un botón.
+     * Maneja la accion de restaurar la flora en la zona indicada. Por ahora
+     * realiza un paso de simulacion para propagar cambios.
+     * @param nombreZona Nombre de la zona donde se restaurara la flora.
      */
     public void manejarAccionRestaurarFlora(String nombreZona) {
-        System.out.println("Acción: Restaurar flora en " + nombreZona);
-        
-        // Aquí llamarías al método del modelo en el futuro:
-        // modelo.restaurarFlora(nombreZona);
-        
-        // Por ahora, para probar que el Observer funciona, forzamos un tick:
+        System.out.println("Accion: Restaurar flora en " + nombreZona);
         modelo.simularPasoDelTiempo();
     }
 

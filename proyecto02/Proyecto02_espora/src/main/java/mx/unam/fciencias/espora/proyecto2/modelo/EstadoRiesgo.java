@@ -1,27 +1,24 @@
 package mx.unam.fciencias.espora.proyecto2.modelo;
 
 /**
- * Esta clase representa el estado de riesgo de una poblacion,
- * implementando los metodos de la interfaz EstadoPoblacion.
- * 
- * @author Equipo Espora
- * @version 1.0
+ *
+ * Estado que representa que la poblacion se encuentra en condiciones de riesgo.
+ *
  */
-
 public class EstadoRiesgo implements EstadoPoblacion{
 
     private PoblacionEspecie poblacion;
 
     /**
-     * Constructor de la clase
-     * @param poblacion la poblacion del estado
+     * Construye el estado de riesgo para la poblacion dada.
+     * @param poblacion Poblacion asociada.
      */
     public EstadoRiesgo(PoblacionEspecie poblacion) {
         this.poblacion = poblacion;
     }
     
     /**
-     * Metodos implementados de la interfaz EstadoPoblacion
+     * En estado de riesgo la reproduccion y mortalidad siguen reglas intermedias.
      */
     @Override
     public void reproducir() {
@@ -32,7 +29,7 @@ public class EstadoRiesgo implements EstadoPoblacion{
     }
 
     /**
-     * Metodo de morir de forma natural
+     * Mortalidad natural en estado de riesgo.
      */
     @Override
     public void morirNatural() {

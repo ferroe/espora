@@ -4,9 +4,15 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mx.unam.fciencias.espora.proyecto2.controlador.SimuladorControlador;
-import mx.unam.fciencias.espora.proyecto2.modelo.EcosistemaInterfaz; // Interfaz
-import mx.unam.fciencias.espora.proyecto2.modelo.EcosistemaLoader; // Loader
+import mx.unam.fciencias.espora.proyecto2.modelo.EcosistemaInterfaz;
+import mx.unam.fciencias.espora.proyecto2.modelo.EcosistemaLoader;
 
+/**
+ *
+ * Aplicacion JavaFX que inicia la interfaz del simulador Xochilotito.
+ * Crea modelo, controlador y vistas principales.
+ *
+ */
 public class XochilotitoUI extends Application {
 
     private Stage primaryStage;
@@ -18,17 +24,13 @@ public class XochilotitoUI extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
 
-        // 1. Cargar Modelo (Usando Loader e Interfaz)
         EcosistemaInterfaz ecosistema = EcosistemaLoader.cargarDefault();
 
-        // 2. Crear Controlador
         SimuladorControlador controlador = new SimuladorControlador(ecosistema, this);
 
-        // 3. Crear Vistas (Inyectando Controlador e Interfaz del Modelo)
         TableroZonas tableroView = new TableroZonas(controlador, ecosistema);
         detalleView = new VistaZonaDetalle(controlador, ecosistema);
 
-        // 4. Configurar Escenas
         escenaTablero = new Scene(tableroView, 800, 600);
         escenaDetalle = new Scene(detalleView, 800, 600);
 
@@ -37,11 +39,18 @@ public class XochilotitoUI extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Navega a la vista de detalle y carga los datos de la zona.
+     * @param nombreZona Nombre de la zona a mostrar.
+     */
     public void navegarAVistaDetalle(String nombreZona) {
         detalleView.cargarDatosZona(nombreZona);
         primaryStage.setScene(escenaDetalle);
     }
 
+    /**
+     * Navega de regreso al tablero principal.
+     */
     public void navegarATablero() {
         primaryStage.setScene(escenaTablero);
     }

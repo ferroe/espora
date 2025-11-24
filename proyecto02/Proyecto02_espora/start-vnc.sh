@@ -2,7 +2,7 @@
 
 # Configuración de pantalla virtual
 export DISPLAY=:1
-export RESOLUTION=1280x720
+export RESOLUTION=1920x1080
 # Nota: Bajé la resolución a 720p para asegurar que se vea bien en laptops
 # Si prefieres 1080p, cámbialo a 1920x1080
 

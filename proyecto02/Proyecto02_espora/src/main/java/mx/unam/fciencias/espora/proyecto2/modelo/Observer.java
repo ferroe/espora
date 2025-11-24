@@ -1,16 +1,14 @@
 package mx.unam.fciencias.espora.proyecto2.modelo;
 
 /**
- * La interfaz con el metodo para los observadores
- * 
- * @author Equipo Espora
- * @version 1.0
+ *
+ * Interfaz para objetos que desean recibir notificaciones del modelo.
+ *
  */
-
 public interface Observer {
 
     /**
-     * Actualiza el estado del observador
+     * Metodo llamado por el sujeto cuando el estado cambia.
      */
     public void actualizar();
     

@@ -4,13 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Esta clase es la poblacion de las especies
- * de un ecosistema.
- * 
- * @author Equipo Espora
- * @version 1.0
+ *
+ * Representa la poblacion de una especie dentro de una zona del ecosistema.
+ * Maneja su estado, tamanio y reproduccion segun una estrategia biologica.
+ *
  */
-
 public class PoblacionEspecie implements ComponenteEcosistema{
 
     private String nombre;
@@ -25,10 +23,10 @@ public class PoblacionEspecie implements ComponenteEcosistema{
     private final int LIMITE_CRITICO = 30;
 
     /**
-     * Constructor de la clase PoblacionEspecie
-     * @param nombre El nombre de la especie
-     * @param tamanioInicial El tamaño inicial de la población
-     * @param saludInicial La salud inicial promedio de la población
+     * Construye una poblacion con valores iniciales.
+     * @param nombre Nombre de la especie.
+     * @param tamanioInicial Tamaño inicial de la poblacion.
+     * @param saludInicial Salud promedio inicial.
      */
     public PoblacionEspecie (String nombre, int tamanioInicial, double saludInicial) {
         this.nombre = nombre;
@@ -41,24 +39,24 @@ public class PoblacionEspecie implements ComponenteEcosistema{
     }
 
     /**
-     * Obtiene el nombre de la especie
-     * @return El nombre de la especieq
+     * Obtiene el nombre de la especie.
+     * @return Nombre de la especie.
      */
     public String getNombre() {
         return this.nombre;
     }
 
     /**
-     * Obtiene la salud promedio de la poblacion
-     * @return La salud promedio de la poblacion
+     * Obtiene la salud promedio de la poblacion.
+     * @return Salud promedio.
      */
     public double getSalud() {
         return this.saludPromedio;
     }
 
     /**
-     * Actualiza la poblacion tomando en cuenta los parametros ambientales
-     * @param parametros Los parametros ambientales que afectan a la poblacion
+     * Actualiza la poblacion segun los parametros ambientales.
+     * @param parametros Parametros ambientales de la zona.
      */
     @Override
     public void actualizar (ModeloParametros parametros) {
@@ -77,22 +75,22 @@ public class PoblacionEspecie implements ComponenteEcosistema{
     }
 
     /**
-     * Hace que la poblacion se reproduzca
+     * Ejecuta la reproduccion segun el estado actual.
      */
     public void reproducir() {
         this.estadoActual.reproducir();
     }
 
     /**
-     * Hace que la poblacion muera de forma natural
+     * Ejecuta la mortalidad natural segun el estado actual.
      */
     public void morirNatural() {
         this.estadoActual.morirNatural();
     }
 
     /**
-     * Hace que la poblacion sea depredada
-     * @param cantidad La cantidad de individuos depredados
+     * Aplica depredacion reduciendo el tamanio.
+     * @param cantidad Numero de individuos depredados.
      */
     public void serDepredado (int cantidad) {
         System.out.println(this.nombre + " ha sido depredado con" + cantidad + " individuos.");
@@ -100,40 +98,40 @@ public class PoblacionEspecie implements ComponenteEcosistema{
     }
 
     /**
-     * Actualiza el estado actual de la poblacion
-     * @param nuevoEstado El nuevo estado de la poblacion
+     * Establece el estado actual de la poblacion.
+     * @param nuevoEstado Nuevo estado a asignar.
      */
     public void actualizarEstado(EstadoPoblacion nuevoEstado) {
         this.estadoActual = nuevoEstado;
     }
 
     /**
-     * Obtiene el estado saludable de la poblacion
-     * @return El estado saludable de la poblacion
+     * Obtiene el estado saludable de la poblacion.
+     * @return Instancia de EstadoSaludable.
      */
     public EstadoPoblacion getEstadoSaludable() {
         return this.estadoSaludable;
     }
 
     /**
-     * Obtiene el estado de riesgo de la poblacion
-     * @return El estado de riesgo de la poblacion
+     * Obtiene el estado de riesgo de la poblacion.
+     * @return Instancia de EstadoRiesgo.
      */
     public EstadoPoblacion getEstadoRiesgo() {
         return this.estadoRiesgo;
     }
 
     /**
-     * Obtiene el estado crítico de la poblacion
-     * @return El estado crítico de la poblacion
+     * Obtiene el estado critico de la poblacion.
+     * @return Instancia de EstadoCritico.
      */
     public EstadoPoblacion getEstadoCritico() {
         return this.estadoCritico;
     }
 
     /**
-     * Actualiza el tamaño de la población
-     * @param nuevoTamanio El nuevo tamaño de la población
+     * Establece el tamanio de la poblacion.
+     * @param nuevoTamanio Nuevo tamanio de la poblacion.
      */
     public void setTamanio(int nuevoTamanio) {
         this.tamanio = (nuevoTamanio < 0) ? 0: nuevoTamanio;
@@ -141,8 +139,8 @@ public class PoblacionEspecie implements ComponenteEcosistema{
     }
 
     /**
-     * Obtiene el tamaño de la población
-     * @return El tamaño de la población
+     * Obtiene el tamanio de la poblacion.
+     * @return Tamaño actual.
      */
     @Override
     public int getTamanio() {
@@ -150,15 +148,15 @@ public class PoblacionEspecie implements ComponenteEcosistema{
     }
 
     /**
-     * Actualiza la salud promedio de la población
-     * @param nuevaSalud La nueva salud promedio de la población
+     * Actualiza la salud promedio de la poblacion.
+     * @param nuevaSalud Nueva salud promedio.
      */
     public void setSaludPromedio(double nuevaSalud) {
         this.saludPromedio = nuevaSalud;
     }
 
     /**
-     * Evalua si la poblacion debe cambiar de estado
+     * Evalua y actualiza el estado segun los limites definidos.
      */
     private void evaluarCambioEstado() {
         if (this.tamanio > LIMITE_RIESGO) {
@@ -177,33 +175,33 @@ public class PoblacionEspecie implements ComponenteEcosistema{
     }
 
     /**
-     * Obtiene el estado actual de la poblacion
-     * @return El estado actual de la poblacion
+     * Devuelve una descripcion del estado actual de la poblacion.
+     * @return Cadena con el estado.
      */
     public String getEstado() {
         if (estadoActual instanceof EstadoSaludable) return "Saludable";
         if (estadoActual instanceof EstadoRiesgo) return "En Riesgo"; 
-        if (estadoActual instanceof EstadoCritico) return "Crítico";
+        if (estadoActual instanceof EstadoCritico) return "Critico";
         return "Desconocido";
     }
 
     /**
-     * Pausa la poblacion
+     * Pausa la poblacion (no implementado en este modelo simple).
      */
     @Override
     public void pausa() {
     }
 
     /**
-     * Reanuda la poblacion
+     * Reanuda la poblacion (no implementado en este modelo simple).
      */
     @Override
     public void reanudar() {
     }
     
     /**
-     * Establece la estrategia de efecto para la poblacion
-     * @param estrategia La estrategia de efecto a establecer
+     * Establece la estrategia de efecto para la poblacion.
+     * @param estrategia Estrategia de efecto a establecer.
      */
     public void setEstrategia(EfectoEstrategia estrategia) {
         this.estrategia = estrategia;

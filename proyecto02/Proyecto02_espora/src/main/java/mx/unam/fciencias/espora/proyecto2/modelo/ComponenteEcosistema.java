@@ -1,47 +1,51 @@
 package mx.unam.fciencias.espora.proyecto2.modelo;
-/**
- * La interfaz ComponenteEcosistema 
- * de nuestro ecosistema Xochimilco
- * 
- * @author Equipo Espora
- * @version 1.0
- */
 
+/**
+ *
+ * Interfaz que representa un componente del ecosistema. Puede ser una zona
+ * o una poblacion. Define las operaciones basicas que el arbol de componentes
+ * debe soportar.
+ *
+ */
 public interface ComponenteEcosistema {
 
     /**
-     * Actualiza el estado del componente del ecosistema
-     * @param parametro El parametro ambiental 
+     * Actualiza el estado del componente en base a los parametros recibidos.
+     * @param parametro Parametros ambientales o de simulacion.
      */
     public void actualizar(ModeloParametros parametro);
 
     /**
-     * El nombre del componente del ecosistema
+     * Obtiene el nombre del componente.
+     * @return Nombre del componente.
      */
     public String getNombre();
 
     /**
-     * La salud del ecosistema
+     * Obtiene la salud agregada del componente.
+     * @return Valor de salud.
      */
     public double getSalud();
 
     /**
-     * El tamano del ecosistema
+     * Obtiene el tamanio o escala del componente.
+     * @return Tamano en unidades de simulacion.
      */
     public int getTamanio();
 
     /**
-     * El estado del componente del ecosistema
+     * Obtiene una descripcion del estado actual del componente.
+     * @return Cadena representando el estado.
      */
     public String getEstado();
 
     /**
-     * Pausa la actividad del ecosistema
+     * Pausa la actividad del componente (si aplica).
      */
     public void pausa();
 
     /**
-     * Reanuda la actividad del ecosistema
+     * Reanuda la actividad del componente (si aplica).
      */
     public void reanudar();    
 }

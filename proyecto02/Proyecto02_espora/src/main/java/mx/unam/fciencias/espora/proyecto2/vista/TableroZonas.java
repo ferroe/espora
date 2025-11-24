@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import mx.unam.fciencias.espora.proyecto2.controlador.SimuladorControladorInterfaz;
@@ -83,13 +84,23 @@ public class TableroZonas extends BorderPane {
     private VBox crearTarjetaZona(ZonaEcosistema zona) {
         VBox tarjeta = new VBox(15);
         tarjeta.getStyleClass().add("tarjeta-zona");
+        tarjeta.setAlignment(Pos.TOP_CENTER);
+        // --- 1. IMAGEN DE LA ZONA (NUEVO) ---
+        // Usamos un StackPane para recortar la imagen con bordes redondeados si quieres
+        ImageView imagenZona = cargarImagen(zona.getNombre());
+        imagenZona.setFitHeight(120); // Altura fija
+        imagenZona.setFitWidth(280);  // Ancho fijo (ajusta según tu CSS)
+        imagenZona.setPreserveRatio(false); // Llenar todo el espacio
+        
+        // Clip para bordes redondeados (opcional, estilo moderno)
+        javafx.scene.shape.Rectangle clip = new javafx.scene.shape.Rectangle(280, 120);
+        clip.setArcWidth(12);
+        clip.setArcHeight(12);
+        imagenZona.setClip(clip);
 
-        // 1. Encabezado de Tarjeta (Icono + Nombre + Badge)
+        // --- 2. Encabezado (Nombre + Badge) ---
         HBox encabezado = new HBox(10);
         encabezado.setAlignment(Pos.CENTER_LEFT);
-        
-        Label icono = new Label("📍"); // O usa un ImageView
-        icono.setStyle("-fx-font-size: 20px;");
         
         Label lblNombre = new Label(zona.getNombre());
         lblNombre.getStyleClass().add("zona-titulo");
@@ -100,7 +111,7 @@ public class TableroZonas extends BorderPane {
         Label lblBadge = new Label(zona.getEstado());
         lblBadge.getStyleClass().addAll("badge-base", obtenerClaseBadge(zona.getEstado()));
         
-        encabezado.getChildren().addAll(icono, lblNombre, spacer, lblBadge);
+        encabezado.getChildren().addAll(lblNombre, spacer, lblBadge);
 
         // 2. Datos (Población Total)
         HBox datosBox = new HBox();
@@ -136,12 +147,31 @@ public class TableroZonas extends BorderPane {
         footer.setPadding(new Insets(10, 0, 0, 0));
 
         // Armar tarjeta
-        tarjeta.getChildren().addAll(encabezado, datosBox, barraProgreso, footer);
+        tarjeta.getChildren().addAll(imagenZona, encabezado, datosBox, barraProgreso, footer);
 
-        // Evento Click
         tarjeta.setOnMouseClicked(e -> controlador.solicitarNavegacionADetalle(zona.getNombre()));
 
         return tarjeta;
+    }
+
+    // --- MÉTODO HELPER PARA CARGAR IMÁGENES ---
+    private ImageView cargarImagen(String nombre) {
+        // Convertir "Zona Norte" a "zona_norte.png"
+        String nombreArchivo = nombre.toLowerCase().replace(" ", "_") + ".jpg";
+        String ruta = "/imagenes/" + nombreArchivo;
+        
+        try {
+            // Intentar cargar
+            var url = getClass().getResource(ruta);
+            if (url != null) {
+                return new ImageView(new javafx.scene.image.Image(url.toExternalForm()));
+            }
+        } catch (Exception e) {
+            System.err.println("No se encontró imagen: " + ruta);
+        }
+
+        ImageView placeholder = new ImageView();
+        return placeholder;
     }
 
     // --- Helpers de Estilo ---

@@ -1,27 +1,24 @@
 package mx.unam.fciencias.espora.proyecto2.modelo;
 
 /**
- * Esta clase representa el estado critico de una poblacion,
- * implementando los metodos de la interfaz EstadoPoblacion.
- * 
- * @author Equipo Espora
- * @version 1.0
+ *
+ * Estado que representa condiciones criticas para una poblacion.
+ *
  */
-
 public class EstadoCritico implements EstadoPoblacion{
 
     private PoblacionEspecie poblacion;
 
     /**
-     * Constructor de la clase
-     * @param poblacion la poblacion del estado
+     * Construye el estado critico asociado a una poblacion.
+     * @param poblacion Poblacion a la que pertenece.
      */
     public EstadoCritico(PoblacionEspecie poblacion) {
         this.poblacion = poblacion;
     }
     
     /**
-     * Metodos implementados de la interfaz EstadoPoblacion
+     * En estado critico la poblacion tiene reproduccion reducida.
      */
     @Override
     public void reproducir() {
@@ -32,7 +29,7 @@ public class EstadoCritico implements EstadoPoblacion{
     }
 
     /**
-     * Metodo de morir de forma natural
+     * En estado critico la mortalidad natural puede ser mayor.
      */
     @Override
     public void morirNatural() {

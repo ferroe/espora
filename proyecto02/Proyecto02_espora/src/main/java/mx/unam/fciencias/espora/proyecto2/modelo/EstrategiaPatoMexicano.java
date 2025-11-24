@@ -3,20 +3,17 @@ package mx.unam.fciencias.espora.proyecto2.modelo;
 import java.util.Map;
 
 /**
- * Esta es la estrategia para el pato mexicano, que implementa la
- * clase EfectoEstrategia
- * 
- * @author Equipo Espora
- * @version 1.0
+ *
+ * Estrategia biologica para el pato mexicano. Afecta tamanio y salud
+ * segun nivel de agua y presencia de especies invasoras.
+ *
  */
 public class EstrategiaPatoMexicano implements EfectoEstrategia {
 
     /**
-     * Metodo que calcula el efecto de la estrategia de la poblacion
-     * en el que el pato mexicano reacciona con el nivel del agua y especies invasoras
-     * 
-     * @param poblacion La poblacion a la que se le aplica el efecto
-     * @param parametros los parametros ambientales que afectan a la poblacion
+     * Calcula el efecto de nivel de agua e invasoras sobre la poblacion.
+     * @param poblacion Poblacion objetivo.
+     * @param parametros Parametros ambientales (nivelAgua, especiesInvasoras, ...).
      */
     @Override
     public void calcularEfecto(PoblacionEspecie poblacion, Map<String, Double> parametros) {
@@ -30,10 +27,10 @@ public class EstrategiaPatoMexicano implements EfectoEstrategia {
             System.out.println("Hay muchas especies invasoras (" + invasoras + ")");
             int tamanioActual = poblacion.getTamanio();
             poblacion.setTamanio((int)(tamanioActual * 0.85));
-            System.out.println("Hay un nuevo tamaño: " + poblacion.getTamanio());
+            System.out.println("Hay un nuevo tamano: " + poblacion.getTamanio());
 
         } else {
-            System.out.println("Hay un nivel de especies invasoras BAJO (" + invasoras + ").");
+            System.out.println("Nivel de especies invasoras bajo (" + invasoras + ").");
         }
         
         if (nivelAgua < 0.3) {
