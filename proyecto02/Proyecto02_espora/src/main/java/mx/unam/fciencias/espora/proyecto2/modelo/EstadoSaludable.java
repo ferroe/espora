@@ -1,9 +1,10 @@
 package mx.unam.fciencias.espora.proyecto2.modelo;
 
 /**
- *
  * Estado que representa condiciones favorables para la poblacion.
  *
+ * @author Equipo Espora
+ * @version 1.0
  */
 public class EstadoSaludable implements EstadoPoblacion{
 

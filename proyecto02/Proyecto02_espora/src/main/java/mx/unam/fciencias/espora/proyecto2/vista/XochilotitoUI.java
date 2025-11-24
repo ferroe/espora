@@ -40,6 +40,8 @@ public class XochilotitoUI extends Application {
 
         SimuladorControlador controlador = new SimuladorControlador(ecosistema, this);
 
+        new SistemaAlertas(ecosistema);
+
         TableroZonas tableroView = new TableroZonas(controlador, ecosistema);
         detalleView = new VistaZonaDetalle(controlador, ecosistema);
 

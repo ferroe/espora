@@ -6,6 +6,8 @@ package mx.unam.fciencias.espora.proyecto2.modelo;
  * o una poblacion. Define las operaciones basicas que el arbol de componentes
  * debe soportar.
  *
+ * @author Equipo Espora
+ * @version 1.0
  */
 public interface ComponenteEcosistema {
 

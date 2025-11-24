@@ -7,10 +7,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- *
  * Utilidad para cargar escenarios del ecosistema desde archivos JSON.
  * Actualmente provee la carga del escenario por defecto ubicado en resources.
  *
+ * @author Equipo Espora
+ * @version 1.0
  */
 public class EcosistemaLoader {
 

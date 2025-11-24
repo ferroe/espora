@@ -4,10 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
  * Representa la poblacion de una especie dentro de una zona del ecosistema.
  * Maneja su estado, tamanio y reproduccion segun una estrategia biologica.
  *
+ * @author Equipo Espora
+ * @version 1.0
  */
 public class PoblacionEspecie implements ComponenteEcosistema{
 

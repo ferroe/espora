@@ -3,10 +3,11 @@ package mx.unam.fciencias.espora.proyecto2.modelo;
 import java.util.Map;
 
 /**
- *
  * Estrategia biologica para el ajolote. Ajusta la salud de la poblacion
  * segun contaminacion y calidad del agua.
  *
+ * @author Equipo Espora
+ * @version 1.0
  */
 public class EstrategiaAjolote implements EfectoEstrategia {
 

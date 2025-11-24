@@ -3,10 +3,11 @@ package mx.unam.fciencias.espora.proyecto2.modelo;
 import java.util.Map;
 
 /**
- *
  * Estrategia biologica para la Rana Moctezuma. Evalua contaminacion
  * y presencia de invasoras para ajustar la salud de la poblacion.
  *
+ * @author Equipo Espora
+ * @version 1.0
  */
 public class EstrategiaRanaMoctezuma implements EfectoEstrategia {
 

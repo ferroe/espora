@@ -6,7 +6,7 @@ package mx.unam.fciencias.espora.proyecto2.modelo;
  * @author Equipo Espora
  * @version 1.0
  */
-public class EstadoCritico implements EstadoPoblacion{
+public class EstadoCritico implements EstadoPoblacion {
 
     private PoblacionEspecie poblacion;
 
@@ -23,7 +23,7 @@ public class EstadoCritico implements EstadoPoblacion{
      */
     @Override
     public void reproducir() {
-        System.out.println("Estado Crítico: No hay reproducción.");
+        System.out.println("Estado Critico: No hay reproducción.");
     }
 
     /**
@@ -32,11 +32,15 @@ public class EstadoCritico implements EstadoPoblacion{
     @Override
     public void morirNatural() {
         int actual = poblacion.getTamanio();
-        if (actual == 0) return;
+        if (actual == 0) {
+            return;
+        }
 
         int mueren = (int)(actual * 0.05);
 
-        if (mueren == 0 && actual > 0) mueren = 1;
+        if (mueren == 0 && actual > 0) {
+            mueren = 1;
+        }
 
         poblacion.setTamanio(actual - mueren);
     }

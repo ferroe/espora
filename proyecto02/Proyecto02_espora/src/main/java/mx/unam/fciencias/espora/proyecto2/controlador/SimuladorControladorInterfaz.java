@@ -6,6 +6,8 @@ package mx.unam.fciencias.espora.proyecto2.controlador;
  * debe exponer a la vista para manejar la navegacion y las acciones sobre
  * las zonas del ecosistema.
  *
+ * @author Equipo Espora
+ * @version 1.0
  */
 public interface SimuladorControladorInterfaz {
 

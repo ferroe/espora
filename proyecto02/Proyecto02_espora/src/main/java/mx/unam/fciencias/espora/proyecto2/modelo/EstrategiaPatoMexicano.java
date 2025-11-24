@@ -3,10 +3,11 @@ package mx.unam.fciencias.espora.proyecto2.modelo;
 import java.util.Map;
 
 /**
- *
  * Estrategia biologica para el pato mexicano. Afecta tamanio y salud
  * segun nivel de agua y presencia de especies invasoras.
  *
+ * @author Equipo Espora
+ * @version 1.0
  */
 public class EstrategiaPatoMexicano implements EfectoEstrategia {
 

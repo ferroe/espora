@@ -1,13 +1,15 @@
 package mx.unam.fciencias.espora.proyecto2.modelo;
 
 /**
- *
  * La interfaz principal del Modelo.
  * Define los metodos para controlar la simulacion (Controlador)
  * y para leer el estado (Vista).
  *
+ * @author Equipo Espora
+ * @version 1.0
  */
 public interface EcosistemaInterfaz extends Sujeto {
+     
      /**
       * Registra un observador para recibir notificaciones del modelo.
       * @param o Observador a registrar.

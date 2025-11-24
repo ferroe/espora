@@ -1,9 +1,10 @@
 package mx.unam.fciencias.espora.proyecto2.modelo;
 
 /**
- *
  * Contenedor de parametros ambientales y metodos para modificarlos.
  *
+ * @author Equipo Espora
+ * @version 1.0
  */
 public class ModeloParametros {
 
@@ -92,7 +93,7 @@ public class ModeloParametros {
      * @param v Nuevo nivel de especies invasoras.
      */
     public void setNivelEspeciesInvasoras(double v) { 
-        this.nivelEspeciesInvasoras = v; 
+        this.nivelEspeciesInvasoras = Math.max(0.0, Math.min(1.0, v));
     }
 
     /**

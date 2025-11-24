@@ -211,7 +211,7 @@ public class TableroZonas extends BorderPane implements Observer {
      * @return
      */
     private String obtenerClaseBadge(String estado) {
-        if ("Crítico".equalsIgnoreCase(estado)) {
+        if ("Critico".equalsIgnoreCase(estado)) {
             return "badge-critico";
         }
         if ("En Riesgo".equalsIgnoreCase(estado)) {
@@ -226,7 +226,7 @@ public class TableroZonas extends BorderPane implements Observer {
      * @return
      */
     private String obtenerClaseBarra(String estado) {
-        if ("Crítico".equalsIgnoreCase(estado)) return "barra-progreso-critico";
+        if ("Critico".equalsIgnoreCase(estado)) return "barra-progreso-critico";
         if ("En Riesgo".equalsIgnoreCase(estado)) return "barra-progreso-riesgo";
         return "barra-progreso-saludable";
     }
@@ -238,7 +238,7 @@ public class TableroZonas extends BorderPane implements Observer {
      */
     private double calcularPorcentajeSalud(ZonaEcosistema zona) {
         String estado = zona.getEstado();
-        if ("Crítico".equalsIgnoreCase(estado)) {
+        if ("Critico".equalsIgnoreCase(estado)) {
             return 0.3;
         }
         if ("En Riesgo".equalsIgnoreCase(estado)) {

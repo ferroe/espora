@@ -4,11 +4,12 @@ import mx.unam.fciencias.espora.proyecto2.vista.XochilotitoUI;
 import mx.unam.fciencias.espora.proyecto2.modelo.EcosistemaInterfaz;
 
 /**
- *
  * Implementacion basica del controlador del simulador. Se encarga de
  * coordinar la navegacion entre vistas y delegar acciones del usuario
  * hacia el modelo del ecosistema.
- *
+ * 
+ * @author Equipo Espora
+ * @version 1.0
  */
 public class SimuladorControlador implements SimuladorControladorInterfaz {
 

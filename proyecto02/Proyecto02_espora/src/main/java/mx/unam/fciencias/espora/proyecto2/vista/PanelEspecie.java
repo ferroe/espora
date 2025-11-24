@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -144,8 +143,13 @@ public class PanelEspecie extends VBox implements Observer {
         contenedorTarjetas.getChildren().add(tarjeta);
     }
 
+    /**
+     * Obtiene la clase CSS correspondiente al estado de la especie.
+     * @param estado Estado de la especie.
+     * @return Clase CSS para el estado.
+     */
     private String obtenerClaseEstado(String estado) {
-        if ("Crítico".equalsIgnoreCase(estado)) {
+        if ("Critico".equalsIgnoreCase(estado)) {
             return "badge-critico";
         }
         if ("En Riesgo".equalsIgnoreCase(estado)) {

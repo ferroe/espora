@@ -1,9 +1,10 @@
 package mx.unam.fciencias.espora.proyecto2.modelo;
 
 /**
- *
  * Estado que representa que la poblacion se encuentra en condiciones de riesgo.
  *
+ * @author Equipo Espora
+ * @version 1.0
  */
 public class EstadoRiesgo implements EstadoPoblacion{
 
