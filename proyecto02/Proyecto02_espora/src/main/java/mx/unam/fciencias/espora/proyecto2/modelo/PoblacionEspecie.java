@@ -70,6 +70,14 @@ public class PoblacionEspecie implements ComponenteEcosistema{
             this.estrategia.calcularEfecto(this, mapaDeParametros);
         }
 
+        if (this.saludPromedio < 0.4) {
+            if (!(this.estadoActual instanceof EstadoCritico)) {
+                actualizarEstado(this.estadoCritico);
+            }
+        } else {
+            this.evaluarCambioEstado();
+        }
+        
         this.reproducir();
         this.morirNatural();
     }
@@ -134,7 +142,11 @@ public class PoblacionEspecie implements ComponenteEcosistema{
      * @param nuevoTamanio Nuevo tamanio de la poblacion.
      */
     public void setTamanio(int nuevoTamanio) {
-        this.tamanio = (nuevoTamanio < 0) ? 0: nuevoTamanio;
+        if (nuevoTamanio < 0) {
+            this.tamanio = 0;
+        } else {
+            this.tamanio = nuevoTamanio;
+        }
         this.evaluarCambioEstado();
     }
 
@@ -152,23 +164,26 @@ public class PoblacionEspecie implements ComponenteEcosistema{
      * @param nuevaSalud Nueva salud promedio.
      */
     public void setSaludPromedio(double nuevaSalud) {
-        this.saludPromedio = nuevaSalud;
+        this.saludPromedio = Math.max(0.0, Math.min(1.0, nuevaSalud));
     }
 
     /**
      * Evalua y actualiza el estado segun los limites definidos.
      */
     private void evaluarCambioEstado() {
+        if (this.saludPromedio < 0.4) {
+            return;
+        }
         if (this.tamanio > LIMITE_RIESGO) {
-            if (this.estadoActual != this.estadoSaludable) {
+            if (!(this.estadoActual instanceof EstadoSaludable)) {
                  this.actualizarEstado(this.estadoSaludable);
             }
         } else if (this.tamanio > LIMITE_CRITICO) {
-             if (this.estadoActual != this.estadoRiesgo) {
+             if (!(this.estadoActual instanceof EstadoRiesgo)) {
                  this.actualizarEstado(this.estadoRiesgo);
             }
         } else {
-             if (this.estadoActual != this.estadoCritico) {
+             if (!(this.estadoActual instanceof EstadoCritico)) {
                 this.actualizarEstado(this.estadoCritico);
             }
         }
@@ -179,9 +194,15 @@ public class PoblacionEspecie implements ComponenteEcosistema{
      * @return Cadena con el estado.
      */
     public String getEstado() {
-        if (estadoActual instanceof EstadoSaludable) return "Saludable";
-        if (estadoActual instanceof EstadoRiesgo) return "En Riesgo"; 
-        if (estadoActual instanceof EstadoCritico) return "Critico";
+        if (estadoActual instanceof EstadoSaludable) { 
+            return "Saludable";
+        }
+        if (estadoActual instanceof EstadoRiesgo) {
+            return "En Riesgo";
+        }
+        if (estadoActual instanceof EstadoCritico) {
+            return "Critico";
+        }
         return "Desconocido";
     }
 

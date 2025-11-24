@@ -1,16 +1,26 @@
 package mx.unam.fciencias.espora.proyecto2.vista;
 
 import javafx.geometry.Insets;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.image.Image;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane; // Usamos FlowPane para las tarjetas
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import mx.unam.fciencias.espora.proyecto2.modelo.*;
 
+/**
+ * Panel que muestra las especies presentes en una zona del ecosistema.
+ * Se actualiza automáticamente al cambiar los datos del modelo.
+ *
+ * @author Equipo Espora
+ * @version 1.0
+ */
 public class PanelEspecie extends VBox implements Observer {
 
     private EcosistemaInterfaz ecosistema;
@@ -36,6 +46,9 @@ public class PanelEspecie extends VBox implements Observer {
         actualizar();
     }
 
+    /**
+     * Inicializa los componentes visuales del panel.
+     */
     private void inicializarComponentes() {
         this.setPadding(new Insets(20));
         this.setSpacing(20);
@@ -58,6 +71,9 @@ public class PanelEspecie extends VBox implements Observer {
         this.getChildren().addAll(titulo, scroll);
     }
     
+    /**
+     * Actualiza el panel mostrando las especies de la zona objetivo.
+     */
     @Override
     public void actualizar() {
         contenedorTarjetas.getChildren().clear();
@@ -70,31 +86,38 @@ public class PanelEspecie extends VBox implements Observer {
         }
     }
 
-    private ImageView cargarImagen(String nombre) {
-        String nombreArchivo = nombre.toLowerCase().replace(" ", "_") + ".jpg";
-        String ruta = "/imagenes/" + nombreArchivo;
-        try {
-            var url = getClass().getResource(ruta);
-            if (url != null) {
-                return new ImageView(new javafx.scene.image.Image(url.toExternalForm()));
-            }
-        } catch (Exception e) { }
-        return new ImageView();
-    }
-
+    /**
+     * Crea una tarjeta visual para una especie y la añade al contenedor.
+     * @param p PoblacionEspecie a representar.
+     */
     private void crearTarjetaEspecie(PoblacionEspecie p) {
         VBox tarjeta = new VBox(10);
         tarjeta.getStyleClass().add("tarjeta-especie"); 
 
-        ImageView foto = cargarImagen(p.getNombre());
-        foto.setFitHeight(140);
-        foto.setFitWidth(250);
-        foto.setPreserveRatio(true);
+        double anchoImagen = 250; 
+        double altoImagen = 140;
+        Rectangle fotoRecorte = new Rectangle(anchoImagen, altoImagen);
         
-        HBox cajaFoto = new HBox(foto);
+        fotoRecorte.setArcWidth(15);
+        fotoRecorte.setArcHeight(15);
+
+        String nombreArchivo = p.getNombre().toLowerCase().replace(" ", "_") + ".jpg";
+        String ruta = "/imagenes/" + nombreArchivo;
+        
+        try {
+            var url = getClass().getResource(ruta);
+            if (url != null) {
+                Image imagen = new Image(url.toExternalForm());
+                fotoRecorte.setFill(new ImagePattern(imagen)); 
+            } else {
+                fotoRecorte.setStyle("-fx-fill: #ecf0f1;"); 
+            }
+        } catch (Exception e) { 
+            fotoRecorte.setStyle("-fx-fill: #ecf0f1;");
+        }
+
+        HBox cajaFoto = new HBox(fotoRecorte);
         cajaFoto.setAlignment(Pos.CENTER);
-        cajaFoto.setStyle("-fx-background-color: #f8f9fa; -fx-background-radius: 10;");
-        cajaFoto.setPadding(new Insets(5));
 
         HBox encabezado = new HBox();
         encabezado.setAlignment(Pos.CENTER_LEFT);
@@ -122,8 +145,12 @@ public class PanelEspecie extends VBox implements Observer {
     }
 
     private String obtenerClaseEstado(String estado) {
-        if ("Crítico".equalsIgnoreCase(estado)) return "badge-critico";
-        if ("En Riesgo".equalsIgnoreCase(estado)) return "badge-riesgo";
+        if ("Crítico".equalsIgnoreCase(estado)) {
+            return "badge-critico";
+        }
+        if ("En Riesgo".equalsIgnoreCase(estado)) {
+            return "badge-riesgo";
+        }
         return "badge-saludable";
     }
 }

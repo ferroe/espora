@@ -50,30 +50,50 @@ public class SimuladorControlador implements SimuladorControladorInterfaz {
         modelo.simularPasoDelTiempo();
     }
 
+    /**
+     * Aplica la limpieza en la zona indicada y realiza un paso de simulacion.
+     * @param nombreZona Nombre de la zona a limpiar.
+     */
     @Override
     public void limpiarZona(String nombreZona) {
         modelo.limpiarZona(nombreZona);
         modelo.simularPasoDelTiempo();
     }
 
+    /**
+     * Repuebla ajolotes en la zona indicada y realiza un paso de simulacion.
+     * @param nombreZona Nombre de la zona donde repoblar.
+     */
     @Override
     public void repoblarAjolotes(String nombreZona) {
         modelo.repoblarEspecie(nombreZona, "Ajolote");
         modelo.simularPasoDelTiempo();
     }
 
+    /**
+     * Restaura la flora en la zona indicada y realiza un paso de simulacion.
+     * @param nombreZona Nombre de la zona cuya flora se restaura.
+     */
     @Override
     public void restaurarFlora(String nombreZona) {
         modelo.restaurarFlora(nombreZona);
         modelo.simularPasoDelTiempo();
     }
 
+    /**
+     * Simula tirar basura en la zona indicada y realiza un paso de simulacion.
+     * @param nombreZona Nombre de la zona donde se tira basura.
+     */
     @Override
     public void tirarBasura(String nombreZona) {
         modelo.tirarBasura(nombreZona);
         modelo.simularPasoDelTiempo();
     }
 
+    /**
+     * Simula la introduccion de tilapias en la zona indicada.
+     * @param nombreZona Nombre de la zona donde se introducen tilapias.
+     */
     @Override
     public void introducirTilapias(String nombreZona) {
         modelo.introducirInvasoras(nombreZona);

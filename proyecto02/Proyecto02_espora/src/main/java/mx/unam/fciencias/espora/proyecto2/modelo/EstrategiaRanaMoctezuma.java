@@ -21,14 +21,13 @@ public class EstrategiaRanaMoctezuma implements EfectoEstrategia {
 
         double contaminacion = parametros.getOrDefault("contaminacion", 0.0);
         double invasoras = parametros.getOrDefault("especiesInvasoras", 0.0);
-        if (contaminacion > 0.4 && invasoras > 0.4) {
-            System.out.println("Amenaza combinada (Contaminacion: " + contaminacion + ", Invasoras: " + invasoras + ")");
+        if (contaminacion > 0.4 || invasoras > 0.4) {
+            System.out.println("¡Amenaza para la Rana!");
             double saludActual = poblacion.getSalud();
-            poblacion.setSaludPromedio(saludActual * 0.90);
-            System.out.println("Su nueva salud es: " + poblacion.getSalud());
+            poblacion.setSaludPromedio(saludActual * 0.80);
 
         } else {
-            System.out.println("Condiciones aceptables para la rana.");
+            poblacion.setSaludPromedio(Math.min(1.0, poblacion.getSalud() * 1.05));
         }
     }
 }

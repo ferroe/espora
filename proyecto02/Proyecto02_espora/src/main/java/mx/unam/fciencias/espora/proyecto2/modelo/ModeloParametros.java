@@ -69,6 +69,9 @@ public class ModeloParametros {
 
     /**
      * Establece los promedios climatologicos para la zona.
+     * @param precipitacion Arreglo de precipitacion mensual.
+     * @param temperatura Arreglo de temperatura mensual.
+     * @param evapBase Valor de evaporacion base.
      */
     public void setPromediosClima(double[] precipitacion, double[] temperatura, double evapBase) {
         this.promediosPrecipitacion = precipitacion;
@@ -76,11 +79,37 @@ public class ModeloParametros {
         this.evaporacionBase = evapBase;
     }
 
-    public void setNivelContaminacion(double v) { this.nivelContaminacion = v; }
-    public void setNivelEspeciesInvasoras(double v) { this.nivelEspeciesInvasoras = v; }
+    /**
+     * Establece el nivel de contaminacion.
+     * @param v Nuevo nivel de contaminacion.
+     */
+    public void setNivelContaminacion(double v) { 
+        this.nivelContaminacion = v; 
+    }
 
-    public double getNivelContaminacion() { return nivelContaminacion; }
-    public double getNivelEspeciesInvasoras() { return nivelEspeciesInvasoras; }
+    /**
+     * Establece el nivel de especies invasoras.
+     * @param v Nuevo nivel de especies invasoras.
+     */
+    public void setNivelEspeciesInvasoras(double v) { 
+        this.nivelEspeciesInvasoras = v; 
+    }
+
+    /**
+     * Obtiene el nivel de contaminacion.
+     * @return Nivel de contaminacion.
+     */
+    public double getNivelContaminacion() { 
+        return nivelContaminacion; 
+    }
+
+    /**
+     * Obtiene el nivel de especies invasoras.
+     * @return Nivel de especies invasoras.
+     */
+    public double getNivelEspeciesInvasoras() { 
+        return nivelEspeciesInvasoras; 
+    }
 
     /**
      * Calcula un valor aproximado del nivel de agua segun precipitacion y evaporacion.

@@ -23,8 +23,10 @@ public class EstadoSaludable implements EstadoPoblacion{
     @Override
     public void reproducir() {
         int actual = poblacion.getTamanio();
-        int nuevos = (int)(actual * 0.20);
-        System.out.println("Estado Saludable: Nacen " + nuevos + " nuevas especies");
+        int nuevos = (int)(actual * 0.02) + 1; 
+        if (actual + nuevos > 500) {
+            nuevos = 0;
+        }
         poblacion.setTamanio(actual + nuevos);
     }
 

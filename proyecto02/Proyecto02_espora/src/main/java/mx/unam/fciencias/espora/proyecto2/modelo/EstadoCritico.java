@@ -1,9 +1,10 @@
 package mx.unam.fciencias.espora.proyecto2.modelo;
 
 /**
- *
  * Estado que representa condiciones criticas para una poblacion.
  *
+ * @author Equipo Espora
+ * @version 1.0
  */
 public class EstadoCritico implements EstadoPoblacion{
 
@@ -22,10 +23,7 @@ public class EstadoCritico implements EstadoPoblacion{
      */
     @Override
     public void reproducir() {
-        int actual = poblacion.getTamanio();
-        int nuevos = (int)(actual * 0.20);
-        System.out.println("Estado Critico: Nacen " + nuevos + " nuevas especies");
-        poblacion.setTamanio(actual + nuevos);
+        System.out.println("Estado Crítico: No hay reproducción.");
     }
 
     /**
@@ -34,8 +32,12 @@ public class EstadoCritico implements EstadoPoblacion{
     @Override
     public void morirNatural() {
         int actual = poblacion.getTamanio();
+        if (actual == 0) return;
+
         int mueren = (int)(actual * 0.05);
-        System.out.println("Estado Critico: Mueren " + mueren + " especies por causas naturales");
+
+        if (mueren == 0 && actual > 0) mueren = 1;
+
         poblacion.setTamanio(actual - mueren);
     }
 }
